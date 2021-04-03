@@ -1,4 +1,5 @@
 -- Drop and recreate Widgets table (Example)
+-- NOT USED ---- KEEP FOR NOW AS SKELETON
 
 DROP TABLE IF EXISTS widgets CASCADE;
 CREATE TABLE widgets (
