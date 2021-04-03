@@ -10,6 +10,8 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 
+const mapsRouter = require('./routes/maps-router');
+
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
@@ -40,6 +42,7 @@ const widgetsRoutes = require("./routes/widgets");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
+app.use("/maps", mapsRouter);
 // Note: mount other resources here, using the same pattern above
 
 
