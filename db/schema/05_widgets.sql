@@ -7,4 +7,3 @@ CREATE TABLE widgets (
   name VARCHAR(255) NOT NULL
 );
 
-asdfasdf
