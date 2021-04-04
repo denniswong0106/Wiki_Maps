@@ -16,10 +16,12 @@ router.get('/', (req, res) => {
 // /GET/maps/:id
 router.get('/:id', (req, res) => {
   getMapById(req.params.id)
-  const templateVars = {
-    map: map
-  }
-  return res.render('maps_show', templateVars);
+    .then((map) => {
+      const templateVars = {
+        map: map
+      }
+      return res.render('maps_show', templateVars);
+    });
 });
 
 // /POST/maps/:id/edit
