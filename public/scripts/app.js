@@ -8,3 +8,23 @@ $(() => {
     }
   });;
 });
+
+$(document).ready(function() {
+
+  $('.favoriteIcon').click(function() {
+    if ($(this).hasClass('favorited')) {
+      $(this.children).removeClass('fas');
+      $(this.children).addClass('far');
+      $(this).removeClass('favorited')
+    } else {
+      $(this.children).removeClass('far');
+      $(this.children).addClass('fas');
+      $(this).addClass('favorited')
+    }
+  })
+
+
+
+
+
+})
