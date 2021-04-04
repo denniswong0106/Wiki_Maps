@@ -1,0 +1,21 @@
+#site-body {
+  background-color: #e3fdfd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-image: url("https://www.transparenttextures.com/patterns/blu-stripes.png");
+}
+
+.mapRow {
+  display: flex;
+  justify-content: space-around;
+}
+
+.mapBox {
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSupSy-i1mzpWcdbck5VQGme1gQXHApaxUTuw&usqp=CAU);
+  width: 30%;
+  height: 100%;
+}
+
+/*# sourceMappingURL=layout.css.map */
