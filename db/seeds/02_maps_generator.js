@@ -1,11 +1,11 @@
 const faker = require('faker');
 
 const randomId = () => {
-  Math.floor(Math.random() * 1000)
+  return Math.floor(Math.random() * 1000)
 }
 const createFakeMap = () => ({
   contributor_id: randomId(),
-  title: faker.definitions.catch_phrase_descriptor(),
+  title: faker.lorem.words(),
   description: faker.lorem.sentence(),
   thumbnail_img: faker.image.city()
 });
@@ -16,6 +16,6 @@ exports.seed = async (knex) => {
   for (let i = 0; i < desiredFakeMap; i++) {
     fakeMap.push(createFakeMap());
   }
-  await knex('users').insert(fakeMap);
+  await knex('maps').insert(fakeMap);
 };
 
