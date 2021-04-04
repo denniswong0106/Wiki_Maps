@@ -1,9 +1,9 @@
 const express = require('express');
 const router  = express.Router();
-const {getProducts, getProductById} = require('../db/testQueries');
+const { getProducts, getProductById } = require('../db/testQueries');
 
 //  /GET/maps
-router.get('/', (res, req) => {
+router.get('/', (req, res) => {
   getProducts()
     .then((products) => {
       res.json(products.rows);
@@ -11,7 +11,7 @@ router.get('/', (res, req) => {
 });
 
 // /GET/maps/:id
-router.get('/:id', (res, req) => {
+router.get('/:id', (req, res) => {
   getProductById(req.params.id)
     .then((product) => {
       res.send(`maps ${req.params.id}`);
@@ -19,17 +19,17 @@ router.get('/:id', (res, req) => {
 });
 
 // /POST/maps/:id/edit
-router.post('/:id/edit', (res, req) => {
+router.post('/:id/edit', (req, res) => {
 
 });
 
 // /POST/maps/  add map route
-router.post('/', (res, req) => {
+router.post('/', (req, res) => {
 
 });
 
 // /POST/maps/:id/delete
-router.post('/:id/delete', (res, req) => {
+router.post('/:id/delete', (req, res) => {
 
 });
 
