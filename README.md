@@ -45,13 +45,11 @@ The following steps are only for _one_ of the group members to perform.
 
 ## HOW TO GRANT PSQL ACCESS TO USER "labber"
 
--$ psql
+-$ psql midterm -U labber
+-$ enter password given in .env file
 (inside psql)
--$ \c midterm -- logged into db midterm as user 'vagrant'
--$ \i ./db/schema/01_users.sql, ..../02_maps ..... -- don't do 05_widgets.sql
--$ GRANT ALL PRIVILEGES ON TABLE users, pins, favorites, maps to labber;
--$ GRANT USAGE, SELECT ON SEQUENCE  users_id_seq, pins_id_seq, favorites_id_seq, maps_id_seq TO labber; 
--- these two functions are used to grant user 'labber' ability to Read/Write into SQL --
+-$ \i ./db/schema/00addAllData.sql
+
 -- In your console (outside psql):
 -$ npx knex seed:run --env development -- This generates seed data, runs all the seed files within seed folder
 -- If successful, console should say 'ran <x> seed files'

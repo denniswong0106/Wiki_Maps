@@ -1,10 +1,8 @@
 const faker = require('faker');
+const {randomNum} = require('../seedHelperFunctions.js');
 
-const randomId = () => {
-  return Math.floor(Math.random() * 1000)
-}
 const createFakeMap = () => ({
-  contributor_id: randomId(),
+  contributor_id: randomNum(1000),
   title: faker.lorem.words(),
   description: faker.lorem.sentence(),
   thumbnail_img: faker.image.city()
@@ -18,4 +16,3 @@ exports.seed = async (knex) => {
   }
   await knex('maps').insert(fakeMap);
 };
-
