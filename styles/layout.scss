@@ -1,9 +1,5 @@
-// See: https://sass-lang.com/
+$site-background: #e3fdfd;
 
-body {
-  background-color: #EEE;
-
-  h1 {
-    color: #244751;
-  }
+#site-body {
+  background-color: $site-background;
 }
