@@ -1,7 +1,10 @@
--- Drop and recreate Users table (Example)
-
 DROP TABLE IF EXISTS users CASCADE;
+
+--- table for users ---
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR (255) NOT NULL,
+  city VARCHAR (255) NOT NULL,
+  profile_pic VARCHAR (255) NOT NULL
 );
