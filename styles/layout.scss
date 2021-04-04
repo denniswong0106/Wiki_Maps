@@ -1,5 +1,51 @@
 $site-background: #e3fdfd;
+$brand-color: #393e46;
+$brand-text-color: #eeeeee;
 
 #site-body {
   background-color: $site-background;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.mapRow {
+  padding-top: 2em;
+  display: flex;
+  justify-content: space-around;
+}
+
+.mapBox {
+  width: 30%;
+  height: 15em;
+  position: relative;
+  border: 1px solid black;
+}
+
+.backgroundMapImg {
+  background-image: url(https://www.clickinsight.ca/wp-content/uploads/2020/12/Resized-Map.png);
+  width: 100%;
+  height: 100%;
+}
+
+.mapTitle {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  font-size: 18px;
+  background-color: $brand-color;
+  color: $brand-text-color;
+  display: inline;
+  padding: 0.5rem;
+  opacity: 0.6;
+
+}
+
+h1 {
+  padding-top: 2em;
+}
+
+.backgroundMapImg:hover {
+  -webkit-filter: blur(5px);
 }
