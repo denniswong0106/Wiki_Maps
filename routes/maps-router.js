@@ -1,14 +1,21 @@
 const express = require('express');
 const router  = express.Router();
+const {getProducts, getProductById} = require('../db/testQueries');
 
 //  /GET/maps
 router.get('/', (res, req) => {
-  res.send('maps');
+  getProducts()
+    .then((products) => {
+      res.json(products.rows);
+    });
 });
 
 // /GET/maps/:id
 router.get('/:id', (res, req) => {
-  res.send(`maps ${req.params.id}`);
+  getProductById(req.params.id)
+    .then((product) => {
+      res.send(`maps ${req.params.id}`);
+    });
 });
 
 // /POST/maps/:id/edit
@@ -26,10 +33,5 @@ router.post('/:id/delete', (res, req) => {
 
 });
 
-return router;
 
-
-
-
-
-module.exports = testMaps;
+module.exports = router;
