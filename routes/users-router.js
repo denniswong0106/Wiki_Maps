@@ -11,11 +11,15 @@ router.get('/:id', (req, res) => {
       const templateVars = {
         user: user
       }
-      console.log('templateVars: ', templateVars);
       res.render('profile_show', templateVars);
     });
 });
 
+//  /GET/users/login/:id    generates cookies
+router.get('/login/:id', (req, res) => {
+  req.session.user_id = req.params.id;
+  res.redirect('/');
+});
 
 
 module.exports = router;
