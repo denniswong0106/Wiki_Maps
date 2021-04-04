@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
       const templateVars = {
         maps: maps.rows
       }
-      console.log('templateVars: ', templateVars);
       return res.render('index', templateVars);
     });
 });
@@ -20,7 +19,6 @@ router.get('/:id', (req, res) => {
   const templateVars = {
     map: map
   }
-  console.log('templateVars: ', templateVars);
   return res.render('maps_show', templateVars);
 });
 

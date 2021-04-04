@@ -21,5 +21,10 @@ router.get('/login/:id', (req, res) => {
   res.redirect('/');
 });
 
+// /GET/users/logout    deletes cookie session
+router.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect('/');
+});
 
 module.exports = router;
