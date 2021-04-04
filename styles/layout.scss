@@ -1,4 +1,4 @@
-$site-background: #e3fdfd;
+$site-background: lightblue;
 $brand-color: #393e46;
 $brand-text-color: #eeeeee;
 
@@ -8,6 +8,7 @@ $brand-text-color: #eeeeee;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  background-image: url("https://www.transparenttextures.com/patterns/blu-stripes.png");
 }
 
 .mapRow {
@@ -19,7 +20,7 @@ $brand-text-color: #eeeeee;
 
 .mapBox {
   width: 30%;
-  height: 15em;
+  height: 18em;
   position: relative;
   border: 1px solid black;
 
@@ -58,6 +59,7 @@ $brand-text-color: #eeeeee;
 
 h1 {
   padding-top: 2em;
+  color: $brand-color;
 }
 
 .mapBox:hover {
@@ -67,4 +69,20 @@ h1 {
   .backgroundMapImg {
     -webkit-filter: blur(5px);
   }
+}
+
+.favoriteIcon {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 18px;
+  background-color: $brand-color;
+  display: inline;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  opacity: 0.6;
+  color: gold;
+  outline: none;
 }
