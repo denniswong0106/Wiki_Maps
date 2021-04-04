@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+const cookieSession = require('cookie-session')
 
 const mapsRouter = require('./routes/maps-router');
 const usersRouter = require('./routes/users-router');
@@ -33,6 +34,10 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(cookieSession({
+  name: 'userId',
+  keys: ['key1', 'key2']
+}))
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own

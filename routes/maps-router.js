@@ -1,21 +1,27 @@
 const express = require('express');
 const router  = express.Router();
-const { getProducts, getProductById } = require('../db/testQueries');
+const { getMaps, getMapById } = require('../db/testQueriesMaps');
 
 //  /GET/maps
 router.get('/', (req, res) => {
-  getProducts()
-    .then((products) => {
-      res.json(products.rows);
+  getMaps()
+    .then((maps) => {
+      const templateVars = {
+        maps: maps.rows
+      }
+      console.log('templateVars: ', templateVars);
+      return res.render('index', templateVars);
     });
 });
 
 // /GET/maps/:id
 router.get('/:id', (req, res) => {
-  getProductById(req.params.id)
-    .then((product) => {
-      res.send(`maps ${req.params.id}`);
-    });
+  getMapById(req.params.id)
+  const templateVars = {
+    map: map
+  }
+  console.log('templateVars: ', templateVars);
+  return res.render('maps_show', templateVars);
 });
 
 // /POST/maps/:id/edit

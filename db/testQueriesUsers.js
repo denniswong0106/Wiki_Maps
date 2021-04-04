@@ -1,7 +1,7 @@
 const db = require('./testDB');
 
 const getUsers = () => {
-  return db.query('SELECT * FROM users;')
+  return db.query('SELECT * FROM users LIMIT 10;')
     .then((response) => {
       return response.rows;
     });
