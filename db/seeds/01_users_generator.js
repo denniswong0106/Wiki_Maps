@@ -1,5 +1,5 @@
 const faker = require('faker');
-
+const { numOfUsers } = require('../seedVariables.js');
 
 const createFakeUser = () => ({
   name: faker.name.firstName() + ' ' + faker.name.lastName(),
@@ -9,15 +9,12 @@ const createFakeUser = () => ({
 });
 
 exports.seed = async (knex) => {
+
   let fakeUsers = [];
-  const desiredFakeUsers = 1000;
+  const desiredFakeUsers = numOfUsers;
+
   for (let i = 0; i < desiredFakeUsers; i++) {
     fakeUsers.push(createFakeUser());
   }
   await knex('users').insert(fakeUsers);
 };
-
-
-
-//   return knex('users').insert(fakeUsers);
-// };
