@@ -1,4 +1,4 @@
-$site-background: lightblue;
+$site-background: #536162;
 $brand-color: #393e46;
 $brand-text-color: #eeeeee;
 
@@ -8,7 +8,7 @@ $brand-text-color: #eeeeee;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  background-image: url("https://www.transparenttextures.com/patterns/blu-stripes.png");
+  background-image: url("https://www.transparenttextures.com/patterns/inflicted.png");
 }
 
 .mapRow {
@@ -19,8 +19,8 @@ $brand-text-color: #eeeeee;
 }
 
 .mapBox {
-  width: 30%;
-  height: 18em;
+  width: 35%;
+  height: 21rem;
   position: relative;
   border: 1px solid black;
 
@@ -85,4 +85,20 @@ h1 {
   opacity: 0.6;
   color: gold;
   outline: none;
+}
+
+.navButtonDiv {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1.5em;
+}
+
+.hidden {
+  visibility: hidden;
 }

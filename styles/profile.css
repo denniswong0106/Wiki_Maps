@@ -1,0 +1,17 @@
+#profileHeader {
+  display: flex;
+}
+#profileHeader img {
+  height: 320px;
+  width: 30%;
+  padding: 1rem;
+}
+
+#profileInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=profile.css.map */

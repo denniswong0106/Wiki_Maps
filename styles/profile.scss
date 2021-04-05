@@ -1,0 +1,62 @@
+$profile-color: #11999e;
+$brand-text-color: #eeeeee;
+$brand-color: #393e46;
+
+#profileHeader {
+  display: flex;
+  img {
+    height: 320px;
+    width: 25%;
+    padding: 1rem;
+    border-radius: 50%;
+  }
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  justify-content: space-around;
+  background-color: $profile-color;
+  border-bottom: 1px solid $brand-color;
+}
+
+#profileInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 3rem;
+  padding-right: 4rem;
+  h1 {
+    font-weight: bold;
+    color: $brand-text-color;
+  }
+  h5 {
+    padding-top: 2rem;
+    color: $brand-text-color;
+  }
+}
+
+#profileToggleDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 3rem;
+  margin-top: 1rem;
+}
+
+#favoritesHider {
+  width: 100%;
+  display: none;
+}
+
+#myMapsHider {
+  width: 100%;
+  display: none;
+}
+
+.profileButton {
+  margin-top: 1rem;
+  width: 20%;
+  height: 40%;
+  text-align: center;
+  margin-bottom: 2rem;
+}
