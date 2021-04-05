@@ -53,4 +53,3 @@ The following steps are only for _one_ of the group members to perform.
 -- In your console (outside psql):
 -$ npx knex seed:run --env development -- This generates seed data, runs all the seed files within seed folder
 -- If successful, console should say 'ran <x> seed files'
-

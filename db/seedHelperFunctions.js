@@ -17,4 +17,16 @@ const generateUniqueNums = (numOfUniqueIds, uniqueIdUpperLimit) => {
   return arr;
 };
 
-module.exports = {generateUniqueNums, randomNum};
+// function that creates an array of a given number of Ids, with the
+// value of the id not exceeding the idUpperLimit (inclusive)
+const generateNonUniqueNums = (numOfIds, idUpperLimit) => {
+  let arr = [];
+  for (let i = 0; arr.length < numOfIds; i++) {
+    arr.push(randomNum(idUpperLimit));
+  }
+  return arr;
+};
+
+
+
+module.exports = {generateUniqueNums, randomNum, generateNonUniqueNums};

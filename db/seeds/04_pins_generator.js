@@ -1,26 +1,30 @@
 const faker = require('faker');
-
-const {generateUniqueNums, randomNum} = require('../seedHelperFunctions.js');
+const { generateNonUniqueNums, randomNum } = require('../seedHelperFunctions.js');
+const { numOfMaps, maxNumPinsPerMap, numOfUsers } = require('../seedVariables.js');
 
 exports.seed = async (knex) => {
 
-  let fakeFavorites = [];
-  const numOfUsers = 1000;
-  for (let i = 0; i < numOfUsers; i++) {
+  let fakePins = [];
+  for (let i = 0; i < numOfMaps; i++) {
 
-    let randUniquemapIds = generateUniqueNums(randomNum(5), 200);
-    //Create an array of 1 to 5 random unique map ID's, max ID value is 200;
+    let randUniqueuserIds = generateNonUniqueNums(randomNum(maxNumPinsPerMap), numOfUsers);
 
-    const createFavorites = (id) => ({
-      user_id: i+1,
-      map_id: id
+    const createPins = (userId) => ({
+      longitude: faker.address.longitude(),
+      latitude: faker.address.latitude(),
+      title: faker.lorem.words(),
+      description: faker.lorem.sentence(),
+      pin_img: faker.image.sports(),
+      user_id: userId,
+      map_id: i + 1
     });
 
-    for (let j = 0; j < randUniquemapIds.length; j++) {
-      let uniqueId = randUniquemapIds[j];
-      fakeFavorites.push(createFavorites(uniqueId));
+    for (let j = 0; j < randUniqueuserIds.length; j++) {
+      let uniqueId = randUniqueuserIds[j];
+      fakePins.push(createPins(uniqueId));
     }
-
+    fakePins.push(createPins());
   }
-  await knex('favorites').insert(fakeFavorites);
+  await knex('pins').insert(fakePins);
 };
+
