@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { getUserById, getUserFavorite, addUserFavorite } = require('../db/testQueriesUsers');
+const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/queriesUsers');
 
 //  /GET/users/:id
 router.get('/:id', (req, res) => {
