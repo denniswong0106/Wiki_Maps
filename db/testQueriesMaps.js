@@ -40,7 +40,9 @@ const editMapById = (mapObj) => {
 }
 
 module.exports = {
+
   getMaps,
   getMapById,
   editMapById
+
 };
