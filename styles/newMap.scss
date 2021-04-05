@@ -1,0 +1,23 @@
+$brand-text-color: #eeeeee;
+
+
+#newMapForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  color: $brand-text-color;
+}
+
+h2 {
+  padding-top: 2rem;
+  color: $brand-text-color;
+}
+
+label {
+  margin-bottom: 0.1rem;
+}
+
+input {
+  margin-top: 0.1rem;
+}
