@@ -1,16 +1,22 @@
 const express = require('express');
 const router  = express.Router();
-const { getUsers, getUserById } = require('../db/testQueriesUsers');
+const { getUserById, getUserFavorite } = require('../db/testQueriesUsers');
 
 //  /GET/users/:id
 router.get('/:id', (req, res) => {
+  const templateVars = {};
   getUserById(req.params.id)
     .then((user) => {
-      const templateVars = {
-        user: user
-      }
-      res.render('profile_show', templateVars);
+      templateVars.user = user;
+
+      return getUserFavorite(req.params.id)
+    })
+    .then((userFavorite) => {
+      templateVars.userFavourite = userFavorite;
+
+      return res.render('profile_show', templateVars);
     });
+
 });
 
 //  /GET/users/login/:id    generates cookies

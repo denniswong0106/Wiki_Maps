@@ -1,12 +1,5 @@
 const db = require('./testDB');
 
-const getUsers = () => {
-  return db.query('SELECT * FROM users LIMIT 10;')
-    .then((response) => {
-      return response.rows;
-    });
-};
-
 const getUserById = (id) => {
   return db.query('SELECT * FROM users WHERE name = $1', [id])
     .then((response) => {
@@ -14,7 +7,24 @@ const getUserById = (id) => {
     });
 };
 
+const getUserFavorite = (id) => {
+  return db.query(`
+    SELECT maps.*
+    FROM favorites
+    JOIN users ON user_id = users.id
+    JOIN maps ON map_id = maps.id
+    WHERE users.id = $1
+    LIMIT 10;
+    `, [id])
+    .then((response) => {
+      return response.rows;
+    });
+};
+
+
 module.exports = {
-  getUsers,
-  getUserById
+
+  getUserById,
+  getUserFavorite
+
 };
