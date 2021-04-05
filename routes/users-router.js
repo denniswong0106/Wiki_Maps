@@ -9,7 +9,7 @@ router.get('/:id', (req, res) => {
     .then((user) => {
       templateVars.user = user;
 
-      return getUserFavorite(req.params.id)
+      return getUserFavorite(req.params.id);
     })
     .then((userFavorite) => {
       templateVars.userFavourite = userFavorite;

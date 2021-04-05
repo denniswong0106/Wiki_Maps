@@ -26,13 +26,16 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// /GET/maps/new
+
+
 // /POST/maps/:id/edit
 router.post('/:id/edit', (req, res) => {
 
 });
 
-// /POST/maps/  add map route
-router.post('/', (req, res) => {
+// /POST/maps/new  add map route
+router.post('/new', (req, res) => {
 
 });
 
