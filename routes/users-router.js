@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { getUserById, getUserFavorite } = require('../db/testQueriesUsers');
+const { getUserById, getUserFavorite, addUserFavorite } = require('../db/testQueriesUsers');
 
 //  /GET/users/:id
 router.get('/:id', (req, res) => {
@@ -22,13 +22,18 @@ router.get('/:id', (req, res) => {
 //  /GET/users/login/:id    generates cookies
 router.get('/login/:id', (req, res) => {
   req.session.user_id = req.params.id;
+  return res.redirect('/');
+});
+
+// /POST/users/logout    deletes cookie session
+router.post('/logout', (req, res) => {
+  req.session = null;
   res.redirect('/');
 });
 
-// /GET/users/logout    deletes cookie session
-router.post("/logout", (req, res) => {
-  req.session = null;
-  res.redirect('/');
+// /POST/users/:id    adds favourites
+router.post('/users/:id/:map_id', (req, res) => {
+  addUserFavorite(req.params.id, req.params.map_id);
 });
 
 module.exports = router;

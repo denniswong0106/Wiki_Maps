@@ -21,10 +21,17 @@ const getUserFavorite = (id) => {
     });
 };
 
+const addUserFavorite = (id, map_id) => {
+  return db.query(`
+    INSERT INTO favorites(user_id, map_id)
+    VALUES ($1, $2);
+    `, [id, map_id])
+};
 
 module.exports = {
 
   getUserById,
-  getUserFavorite
+  getUserFavorite,
+  addUserFavorite
 
 };
