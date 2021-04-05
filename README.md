@@ -48,7 +48,7 @@ The following steps are only for _one_ of the group members to perform.
 -$ psql midterm -U labber
 -$ enter password given in .env file
 (inside psql)
--$ \i ./db/schema/00addAllData.sql
+-$ \i ./db/schema/00_addAllData.sql
 
 -- In your console (outside psql):
 -$ npx knex seed:run --env development -- This generates seed data, runs all the seed files within seed folder
