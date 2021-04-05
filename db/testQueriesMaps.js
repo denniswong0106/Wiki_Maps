@@ -15,6 +15,8 @@ const getMapById = (id) => {
 };
 
 module.exports = {
+
   getMaps,
   getMapById
+
 };
