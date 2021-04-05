@@ -4,8 +4,13 @@ module.exports = {
   maxNumPinsPerMap: 10,
   maxNumOfFavMapIdsPerUser: 5,
  };
+
+// Variables for the fake data generation. Alter here, then
+// recreate tables before running seed function again
+
 // Try to stay roughly with the equation below:
 
 // numOfMaps = numOfusers /4
 // maxNumPinsPerMap = numOfMaps / 5
 // maxNumOfFavMapIdsPerUser = maxNumPinsPerMap / 2
+
