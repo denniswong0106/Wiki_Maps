@@ -76,7 +76,7 @@ app.get('/', (req, res) => {
     .then((userFavorites) => {
       templateVars.favorites = userFavorites;
 
-      console.log('templateVars: ', templateVars);
+      console.log('templateVars homepage: ', templateVars);
       return res.render('index', templateVars);
     });
 });
