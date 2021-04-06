@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
       const templateVars = {
         maps: maps.rows
       }
+      console.log(maps.rows)
       return res.render('index', templateVars);
     });
 });

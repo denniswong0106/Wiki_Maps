@@ -4,3 +4,15 @@ h1 {
   padding-top: 0.5rem;
   color: $brand-text-color;
 }
+
+#map-container {
+  width: 75%;
+  height: 500px;
+  align-content: center;
+}
+
+#mapDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
