@@ -57,7 +57,7 @@ app.use("/users", usersRouter);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("maps_show");
 });
 
 app.listen(PORT, () => {
