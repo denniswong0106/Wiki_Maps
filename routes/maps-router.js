@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getMaps, getMapById } = require('../lib/queriesMaps');
+const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/queriesUsers');
 
 // /GET/maps
 // router.get('/', (req, res) => {
@@ -16,11 +17,22 @@ const { getMaps, getMapById } = require('../lib/queriesMaps');
 
 // /GET/maps/:id
 router.get('/:id', (req, res) => {
+  const templateVars = {};
+
   getMapById(req.params.id)
     .then((map) => {
-      const templateVars = {
-        map: map
-      }
+      templateVars.map = map;
+
+      return getUserById(req.session.user_id);
+    })
+    .then((user) => {
+      templateVars.user = user
+
+      return getUserFavorite(req.session.user_id);
+    })
+    .then((userFavorites) => {
+      templateVars.favorites = userFavorites;
+
       console.log('templateVars getUserMap: ', templateVars);
       return res.render('maps_show', templateVars);
     });

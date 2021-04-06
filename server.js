@@ -11,6 +11,7 @@ const app        = express();
 const morgan     = require('morgan');
 const cookieSession = require('cookie-session');
 const { getMaps, getMapById } = require('./lib/queriesMaps');
+const { getUserById, getUserFavorite, addUserFavorite } = require('./lib/queriesUsers');
 
 
 // PG database client/connection setup
@@ -59,12 +60,23 @@ app.use("/users", usersRouter);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get('/', (req, res) => {
+  const templateVars = {};
+
   getMaps()
     .then((maps) => {
-      const templateVars = {
-        maps: maps.rows
-      }
-      console.log('templateVars getMaps: ', templateVars);
+      templateVars.maps = maps;
+
+      return getUserById(req.session.user_id);
+    })
+    .then((user) => {
+      templateVars.user = user
+
+      return getUserFavorite(req.session.user_id);
+    })
+    .then((userFavorites) => {
+      templateVars.favorites = userFavorites;
+
+      console.log('templateVars: ', templateVars);
       return res.render('index', templateVars);
     });
 });
