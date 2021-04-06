@@ -7,7 +7,7 @@ exports.seed = async (knex) => {
   let fakePins = [];
   for (let i = 0; i < numOfMaps; i++) {
 
-    let randUniqueuserIds = generateNonUniqueNums(randomNum(maxNumPinsPerMap), numOfUsers);
+    let userIds = generateNonUniqueNums(randomNum(maxNumPinsPerMap), numOfUsers);
 
     const createPins = (userId) => ({
       longitude: faker.address.longitude(),
@@ -19,11 +19,10 @@ exports.seed = async (knex) => {
       map_id: i + 1
     });
 
-    for (let j = 0; j < randUniqueuserIds.length; j++) {
-      let uniqueId = randUniqueuserIds[j];
+    for (let j = 0; j < userIds.length; j++) {
+      let uniqueId = userIds[j];
       fakePins.push(createPins(uniqueId));
     }
-    fakePins.push(createPins());
   }
   await knex('pins').insert(fakePins);
 };

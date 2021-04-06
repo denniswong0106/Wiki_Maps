@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { getMaps, getMapById } = require('../db/testQueriesMaps');
+const { getMaps, getMapById } = require('../lib/queriesMaps');
 
 //  /GET/maps
 router.get('/', (req, res) => {
@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
       const templateVars = {
         maps: maps.rows
       }
-      console.log(maps.rows)
+      console.log('templateVars getMaps: ', templateVars);
       return res.render('index', templateVars);
     });
 });
@@ -21,6 +21,7 @@ router.get('/:id', (req, res) => {
       const templateVars = {
         map: map
       }
+      console.log('templateVars getUserMap: ', templateVars);
       return res.render('maps_show', templateVars);
     });
 });

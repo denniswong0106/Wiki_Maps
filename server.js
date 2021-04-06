@@ -9,10 +9,7 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
-const cookieSession = require('cookie-session')
-
-const mapsRouter = require('./routes/maps-router');
-const usersRouter = require('./routes/users-router');
+const cookieSession = require('cookie-session');
 
 // PG database client/connection setup
 // const { Pool } = require('pg');
@@ -41,8 +38,10 @@ app.use(cookieSession({
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
+// const usersRoutes = require("./routes/users");
+// const widgetsRoutes = require("./routes/widgets");
+const mapsRouter = require('./routes/maps-router');
+const usersRouter = require('./routes/users-router');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -52,7 +51,8 @@ app.use("/maps", mapsRouter);
 app.use("/users", usersRouter);
 // Note: mount other resources here, using the same pattern above
 
-
+// usually api/xxx is when we get a json back ie. an object.
+// /xxx is when we just get other things back
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
