@@ -10,6 +10,9 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const cookieSession = require('cookie-session');
+const { getMaps } = require('./lib/queriesMaps');
+const { getUserById, getUserFavorite } = require('./lib/queriesUsers');
+
 
 // PG database client/connection setup
 // const { Pool } = require('pg');
@@ -56,8 +59,30 @@ app.use("/users", usersRouter);
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-app.get("/", (req, res) => {
-  res.render("maps_show");
+app.get('/', (req, res) => {
+  const templateVars = {};
+
+  getMaps()
+    .then((maps) => {
+      templateVars.maps = maps;
+
+      return getUserById(req.session.user_id);
+    })
+    .then((user) => {
+      templateVars.user = user
+
+      return getUserFavorite(req.session.user_id);
+    })
+    .then((userFavorites) => {
+      templateVars.favorites = userFavorites;
+
+      console.log('templateVars homepage: ', templateVars);
+      return res.render('index', templateVars);
+    });
+});
+
+app.get('*', (req, res) => {
+  res.status(404).send('Error 404 Page not found.');
 });
 
 app.listen(PORT, () => {

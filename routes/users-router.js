@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/queriesUsers');
+const { getMaps, getMapById, getContributedByUser } = require('../lib/queriesMaps');
 
 //  /GET/users/:id
 router.get('/:id', (req, res) => {
@@ -9,11 +10,17 @@ router.get('/:id', (req, res) => {
     .then((user) => {
       templateVars.user = user;
 
-      return getUserFavorite(req.params.id)
+      return getUserFavorite(req.params.id);
     })
     .then((userFavorite) => {
       templateVars.userFavourite = userFavorite;
 
+      return getContributedByUser(req.params.id)
+    })
+    .then((contributions) => {
+      templateVars.contributions = contributions
+
+      console.log('templateVars users/:id/: ', templateVars);
       return res.render('profile_show', templateVars);
     });
 
@@ -22,17 +29,15 @@ router.get('/:id', (req, res) => {
 //  /GET/users/login/:id    generates cookies
 router.get('/login/:id', (req, res) => {
   req.session.user_id = req.params.id;
-  console.log('req.params.id', req.params.id)
   getUserById(req.params.id)
     .then((user) => {
-      console.log('user:', user)
-    return res.redirect('/');
+      return res.redirect('/');
     })
 });
 
 // /POST/users/logout    deletes cookie session
 router.post('/logout', (req, res) => {
-  req.session = null;
+  req.session.user_id = null;
   res.redirect('/');
 });
 
