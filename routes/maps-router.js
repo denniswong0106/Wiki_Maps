@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { getMapById, deleteMap } = require('../lib/queriesMaps');
+const { getMapById, deleteMap, editMapById } = require('../lib/queriesMaps');
 const { getUserById, getUserFavorite } = require('../lib/queriesUsers');
 // const { route } = require('./users-router');
 
@@ -75,7 +75,18 @@ router.get('/:id/edit', (req, res) => {
 
 // /POST/maps/:id/edit
 router.post('/:id/edit', (req, res) => {
+  const obj = {
+    title: req.body.newMapTitle,
+    description: req.body.newMapDescription,
+    thumbnail_img: req.body.newMapImg,
+    city: req.body.newMapCity,
+    id: req.params.id
+  }
 
+  editMapById(obj)
+    .then((result) => {
+      return res.redirect('/');
+    });
 });
 
 // /POST/maps/new  add map route
@@ -90,7 +101,5 @@ router.post('/:id/delete', (req, res) => {
       res.redirect('/');
     });
 });
-
-// pins edit, delete, add, get all pins
 
 module.exports = router;
