@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const { getMaps, getMapById } = require('../db/testQueriesMaps');
 
-//  /GET/maps
+// /GET/maps
 router.get('/', (req, res) => {
   getMaps()
     .then((maps) => {
@@ -28,6 +28,11 @@ router.get('/:id', (req, res) => {
 
 // /GET/maps/new
 
+// pins
+// /POST/add
+// /POST/delete
+// /POST/edit
+// /GET/all pins with
 
 // /POST/maps/:id/edit
 router.post('/:id/edit', (req, res) => {
