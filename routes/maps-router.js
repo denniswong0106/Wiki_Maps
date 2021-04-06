@@ -4,18 +4,6 @@ const { getMapById, deleteMap, editMapById } = require('../lib/queriesMaps');
 const { getUserById, getUserFavorite } = require('../lib/queriesUsers');
 // const { route } = require('./users-router');
 
-// /GET/maps
-// router.get('/', (req, res) => {
-//   getMaps()
-//     .then((maps) => {
-//       const templateVars = {
-//         maps: maps.rows
-//       }
-//       console.log('templateVars getMaps: ', templateVars);
-//       return res.render('index', templateVars);
-//     });
-// });
-
 // /GET/maps/new
 router.get('/new', (req, res) => {
   const id = req.session.user_id
@@ -85,7 +73,7 @@ router.post('/:id/edit', (req, res) => {
 
   editMapById(obj)
     .then((result) => {
-      return res.redirect('/');
+      res.redirect('/');
     });
 });
 
