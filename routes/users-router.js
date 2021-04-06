@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { getUserById, getUserFavorite, addUserFavorite } = require('../db/testQueriesUsers');
+const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/queriesUsers');
 
 //  /GET/users/:id
 router.get('/:id', (req, res) => {
@@ -22,7 +22,12 @@ router.get('/:id', (req, res) => {
 //  /GET/users/login/:id    generates cookies
 router.get('/login/:id', (req, res) => {
   req.session.user_id = req.params.id;
-  return res.redirect('/');
+  console.log('req.params.id', req.params.id)
+  getUserById(req.params.id)
+    .then((user) => {
+      console.log('user:', user)
+    return res.redirect('/');
+    })
 });
 
 // /POST/users/logout    deletes cookie session

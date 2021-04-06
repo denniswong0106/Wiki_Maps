@@ -10,6 +10,8 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const cookieSession = require('cookie-session');
+const { getMaps, getMapById } = require('./lib/queriesMaps');
+
 
 // PG database client/connection setup
 // const { Pool } = require('pg');
@@ -51,12 +53,20 @@ app.use("/maps", mapsRouter);
 app.use("/users", usersRouter);
 // Note: mount other resources here, using the same pattern above
 
-
+// usually api/xxx is when we get a json back ie. an object.
+// /xxx is when we just get other things back
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-app.get("/", (req, res) => {
-  res.render("index");
+app.get('/', (req, res) => {
+  getMaps()
+    .then((maps) => {
+      const templateVars = {
+        maps: maps.rows
+      }
+      console.log('templateVars getMaps: ', templateVars);
+      return res.render('index', templateVars);
+    });
 });
 
 app.listen(PORT, () => {
