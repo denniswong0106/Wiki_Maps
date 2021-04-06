@@ -51,7 +51,8 @@ app.use("/maps", mapsRouter);
 app.use("/users", usersRouter);
 // Note: mount other resources here, using the same pattern above
 
-
+// usually api/xxx is when we get a json back ie. an object.
+// /xxx is when we just get other things back
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
