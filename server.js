@@ -10,8 +10,8 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const cookieSession = require('cookie-session');
-const { getMaps, getMapById } = require('./lib/queriesMaps');
-const { getUserById, getUserFavorite, addUserFavorite } = require('./lib/queriesUsers');
+const { getMaps } = require('./lib/queriesMaps');
+const { getUserById, getUserFavorite } = require('./lib/queriesUsers');
 
 
 // PG database client/connection setup
@@ -79,6 +79,10 @@ app.get('/', (req, res) => {
       console.log('templateVars homepage: ', templateVars);
       return res.render('index', templateVars);
     });
+});
+
+app.get('*', (req, res) => {
+  res.status(404).send('Error 404 Page not found.');
 });
 
 app.listen(PORT, () => {

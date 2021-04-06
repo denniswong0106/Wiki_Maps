@@ -16,6 +16,20 @@ const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/querie
 //     });
 // });
 
+// /GET/maps/new
+router.get('/new', (req, res) => {
+  const id = req.session.user_id
+  console.log('id: ', id);
+  getUserById(id)
+    .then((user) => {
+      const templateVars = {
+        user: user
+      }
+      console.log('templateVars /maps/new/: ', templateVars);
+      return res.render('maps_new', templateVars);
+    });
+});
+
 // /GET/maps/:id
 router.get('/:id', (req, res) => {
   const templateVars = {};
@@ -39,17 +53,6 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// /GET/maps/new
-router.get('/new', (req, res) => {
-  getUserById(req.session.user_id)
-    .then((user) => {
-      const templateVars = {
-        user: user
-      }
-      console.log('templateVars /maps/new/: ', templateVars);
-      return res.render('maps_new', templateVars);
-    });
-});
 
 // /POST/maps/:id/edit
 router.get('/:id/edit', (req, res) => {
