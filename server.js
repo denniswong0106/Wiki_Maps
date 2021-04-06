@@ -69,7 +69,7 @@ app.get('/', (req, res) => {
       return getUserById(req.session.user_id);
     })
     .then((user) => {
-      templateVars.user = user
+      templateVars.user = user;
 
       return getUserFavorite(req.session.user_id);
     })

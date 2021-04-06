@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/queriesUsers');
-const { getMaps, getMapById, getContributedByUser } = require('../lib/queriesMaps');
+const { getContributedByUser } = require('../lib/queriesMaps');
 
 //  /GET/users/:id
 router.get('/:id', (req, res) => {
