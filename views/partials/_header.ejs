@@ -4,17 +4,18 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
+<% if(user) { %>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link brand-text" href="/users/:id">My Profile</a>
+        <a class="nav-item nav-link brand-text" href="/users/1">My Profile</a>
         <a class="nav-item nav-link brand-text" href="/maps/new">Create a new map!</a>
       </div>
     </div>
-    <!-- <a href="/users/logout"><button type="button" class="btn btn-danger" style="margin-right: 20px">Log Out</button></a> -->
-
-      <a href="/users/login/1"><button type="button" class="btn btn-primary" style="margin-right: 20px">Log In</button></a>
+    <h6 id="welcomeMsg">Welcome back, <%= user.name %></h6>
+    <a href="/users/logout"><button type="button" class="btn btn-danger">Log Out</button></a>
+<% } else { %>
+      <a href="/users/login/1"><button type="button" class="btn btn-primary userAccountButtons">Log In</button></a>
       <a href="/register"><button type="button" class="btn btn-info">Register</button></a>
-
+<% } %>
   </nav>
 </header>
