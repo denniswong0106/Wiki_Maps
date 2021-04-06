@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
-const { getMaps, getMapById } = require('../lib/queriesMaps');
-const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/queriesUsers');
+const { getMapById } = require('../lib/queriesMaps');
+const { getUserById, getUserFavorite } = require('../lib/queriesUsers');
 // const { route } = require('./users-router');
 
 // /GET/maps
@@ -19,7 +19,7 @@ const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/querie
 // /GET/maps/new
 router.get('/new', (req, res) => {
   const id = req.session.user_id
-  console.log('id: ', id);
+
   getUserById(id)
     .then((user) => {
       const templateVars = {
@@ -30,6 +30,7 @@ router.get('/new', (req, res) => {
     });
 });
 
+// add get all pins
 // /GET/maps/:id
 router.get('/:id', (req, res) => {
   const templateVars = {};
@@ -72,6 +73,9 @@ router.get('/:id/edit', (req, res) => {
     });
 });
 
+// /POST/maps/:id/edit
+
+
 // /POST/maps/new  add map route
 router.post('/new', (req, res) => {
 
@@ -82,5 +86,7 @@ router.post('/:id/delete', (req, res) => {
 
 });
 
+// pins edit, delete, add, get all pins
+// post map edit
 
 module.exports = router;

@@ -1,7 +1,13 @@
 const express = require('express');
 const router  = express.Router();
 const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/queriesUsers');
-const { getMaps, getMapById, getContributedByUser } = require('../lib/queriesMaps');
+const { getContributedByUser } = require('../lib/queriesMaps');
+
+// /POST/users/logout    deletes cookie session
+router.post('/logout', (req, res) => {
+  req.session.user_id = null;
+  res.redirect('/');
+});
 
 //  /GET/users/:id
 router.get('/:id', (req, res) => {
@@ -35,14 +41,8 @@ router.get('/login/:id', (req, res) => {
     })
 });
 
-// /POST/users/logout    deletes cookie session
-router.post('/logout', (req, res) => {
-  req.session.user_id = null;
-  res.redirect('/');
-});
-
 // /POST/users/:id    adds favourites
-router.post('/users/:id/:map_id', (req, res) => {
+router.post('/:id/:map_id', (req, res) => {
   addUserFavorite(req.params.id, req.params.map_id);
 });
 
