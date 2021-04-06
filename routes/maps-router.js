@@ -73,6 +73,9 @@ router.get('/:id/edit', (req, res) => {
     });
 });
 
+// /POST/maps/:id/edit
+
+
 // /POST/maps/new  add map route
 router.post('/new', (req, res) => {
 

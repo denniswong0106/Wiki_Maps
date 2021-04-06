@@ -45,6 +45,7 @@ app.use(cookieSession({
 // const widgetsRoutes = require("./routes/widgets");
 const mapsRouter = require('./routes/maps-router');
 const usersRouter = require('./routes/users-router');
+const pinsRouter = require('./routes/pins-router');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -52,6 +53,7 @@ const usersRouter = require('./routes/users-router');
 // app.use("/api/widgets", widgetsRoutes(db));
 app.use("/maps", mapsRouter);
 app.use("/users", usersRouter);
+app.use("/pins", pinsRouter);
 // Note: mount other resources here, using the same pattern above
 
 // usually api/xxx is when we get a json back ie. an object.
