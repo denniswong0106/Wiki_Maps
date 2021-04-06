@@ -1,25 +1,13 @@
 const express = require('express');
 const router  = express.Router();
-const { getMaps, getMapById } = require('../lib/queriesMaps');
-const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/queriesUsers');
+const { getMapById, deleteMap, editMapById } = require('../lib/queriesMaps');
+const { getUserById, getUserFavorite } = require('../lib/queriesUsers');
 // const { route } = require('./users-router');
-
-// /GET/maps
-// router.get('/', (req, res) => {
-//   getMaps()
-//     .then((maps) => {
-//       const templateVars = {
-//         maps: maps.rows
-//       }
-//       console.log('templateVars getMaps: ', templateVars);
-//       return res.render('index', templateVars);
-//     });
-// });
 
 // /GET/maps/new
 router.get('/new', (req, res) => {
   const id = req.session.user_id
-  console.log('id: ', id);
+
   getUserById(id)
     .then((user) => {
       const templateVars = {
@@ -30,6 +18,7 @@ router.get('/new', (req, res) => {
     });
 });
 
+// add get all pins
 // /GET/maps/:id
 router.get('/:id', (req, res) => {
   const templateVars = {};
@@ -72,6 +61,22 @@ router.get('/:id/edit', (req, res) => {
     });
 });
 
+// /POST/maps/:id/edit
+router.post('/:id/edit', (req, res) => {
+  const obj = {
+    title: req.body.newMapTitle,
+    description: req.body.newMapDescription,
+    thumbnail_img: req.body.newMapImg,
+    city: req.body.newMapCity,
+    id: req.params.id
+  }
+
+  editMapById(obj)
+    .then((result) => {
+      res.redirect('/');
+    });
+});
+
 // /POST/maps/new  add map route
 router.post('/new', (req, res) => {
 
@@ -79,8 +84,10 @@ router.post('/new', (req, res) => {
 
 // /POST/maps/:id/delete
 router.post('/:id/delete', (req, res) => {
-
+  deleteMap(req.params.id, req.session.user_id)
+    .then((result) => {
+      res.redirect('/');
+    });
 });
-
 
 module.exports = router;
