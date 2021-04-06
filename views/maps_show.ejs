@@ -16,18 +16,28 @@
   <link rel="stylesheet" href="/styles/mapsShow.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <!-- <script type="text/javascript" src="/scripts/map.js"></script> -->
 </head>
 
 <body id="site-body">
   <%- include('partials/_header') %>
+  <div class="titleDiv">
   <h1>Map Title</h1>
+    <button id="mapsShowStar" class="favoriteIcon" type="button" name="button">
+      <i class="far fa-star"></i>
+    </button>
+  </div>
 
-  <!-- To do: add favorite icon to map once map is implemented -->
+
   <div id="mapDiv">
     <div id="map-container">
     </div>
+  </div>
+  <div class="buttonContainer">
+  <a href="/maps/:id/edit"><button type="button" name="button" class="btn btn-primary">Edit Map</button></a>
+    <form method="POST" action='/maps/:id/delete'><button type="submit" name="button" class = "btn btn-danger">Delete Map</button></form>
   </div>
   <script type="text/javascript">
     function initMap() {
