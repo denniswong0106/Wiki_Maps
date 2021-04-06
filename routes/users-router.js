@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/queriesUsers');
+const { getMaps, getMapById, getContributedByUser } = require('../lib/queriesMaps');
 
 //  /GET/users/:id
 router.get('/:id', (req, res) => {
@@ -14,6 +15,12 @@ router.get('/:id', (req, res) => {
     .then((userFavorite) => {
       templateVars.userFavourite = userFavorite;
 
+      return getContributedByUser(req.params.id)
+    })
+    .then((contributions) => {
+      templateVars.contributions = contributions
+
+      console.log('templateVars users/:id/: ', templateVars);
       return res.render('profile_show', templateVars);
     });
 
@@ -22,11 +29,9 @@ router.get('/:id', (req, res) => {
 //  /GET/users/login/:id    generates cookies
 router.get('/login/:id', (req, res) => {
   req.session.user_id = req.params.id;
-
   getUserById(req.params.id)
     .then((user) => {
-
-    return res.redirect('/');
+      return res.redirect('/');
     })
 });
 

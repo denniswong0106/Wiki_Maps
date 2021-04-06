@@ -51,12 +51,6 @@ router.get('/new', (req, res) => {
     });
 });
 
-// pins
-// /POST/add
-// /POST/delete
-// /POST/edit
-// /GET/all pins with
-
 // /POST/maps/:id/edit
 router.get('/:id/edit', (req, res) => {
   const templateVars = {};
