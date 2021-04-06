@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const { getMapById, deleteMap, editMapById } = require('../lib/queriesMaps');
 const { getUserById, getUserFavorite } = require('../lib/queriesUsers');
-// const { route } = require('./users-router');
+const { getAllPinsForMapId } = require('../lib/queriesPins');
 
 // /GET/maps/new
 router.get('/new', (req, res) => {
@@ -37,10 +37,15 @@ router.get('/:id', (req, res) => {
     .then((userFavorites) => {
       templateVars.favorites = userFavorites;
 
+      return getAllPinsForMapId(req.params.id);
+    })
+    .then((pins) => {
+      templateVars.pins = pins;
+
       console.log('templateVars maps/:id/: ', templateVars);
       return res.render('maps_show', templateVars);
     });
-});
+  });
 
 
 // /POST/maps/:id/edit
