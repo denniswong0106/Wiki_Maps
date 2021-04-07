@@ -69,7 +69,7 @@ app.use("/lights", lightsRouter);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get('/', (req, res) => {
-  const templateVars = {};
+  const templateVars = { light: req.session.light };
 
   getMaps()
     .then((maps) => {
