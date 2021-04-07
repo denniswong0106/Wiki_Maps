@@ -46,9 +46,15 @@
             <div class="backgroundMapImg" style='background-image:url(<%= mapImg %>);'>
             </div>
             </a>
-            <button class="favoriteIcon" type="button" name="button">
-              <i class="far fa-star"></i>
-            </button>
+            <% if (mapIdsFavorites.includes(userFavourite[i].id)) { %>
+              <button class="favoriteIcon favorited" type="button" name="button">
+                <i class="fas fa-star"></i>
+              </button>
+              <% } else { %>
+                <button class="favoriteIcon" type="button" name="button">
+                  <i class="far fa-star"></i>
+                </button>
+              <% } %>
             <p class="mapDescription"><%= userFavourite[i].description %></p>
             <h4 class="mapTitle"><%= userFavourite[i].title %></h4>
           </div>
@@ -57,10 +63,11 @@
         <% } %>
     <% } %>
     </div>
-    </div>
     <button type="button" class="btn btn-secondary profileButton profileMyMaps" data-toggle="button" aria-pressed="false" autocomplete="off">
       My Maps
     </button>
+    </div>
+
     <div id="myMapsHider">
       <% for(let i = 0; i < contributions.length; i ++) { %>
         <% if(i % 2 === 0) { %>
@@ -73,9 +80,15 @@
             <div class="backgroundMapImg" style='background-image:url(<%= mapImg %>);'>
             </div>
             </a>
-            <button class="favoriteIcon" type="button" name="button">
-              <i class="far fa-star"></i>
-            </button>
+            <% if (mapIdsFavorites.includes(contributions[i].id)) { %>
+              <button class="favoriteIcon favorited" type="button" name="button">
+                <i class="fas fa-star"></i>
+              </button>
+              <% } else { %>
+                <button class="favoriteIcon" type="button" name="button">
+                  <i class="far fa-star"></i>
+                </button>
+              <% } %>
             <p class="mapDescription"><%= contributions[i].description %></p>
             <h4 class="mapTitle"><%= contributions[i].title %></h4>
           </div>
