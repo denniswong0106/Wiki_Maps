@@ -12,11 +12,13 @@ router.post('/add', (req, res) => {
     latitude: req.body.newLat,
     title: req.body.newTitle,
     description: req.body.newDescription,
-    pin_img: req.body.newPinImg
+    pin_img: req.body.newPinImg,
+    user_id: req.body.userID,
+    map_id: req.body.mapId
   };
   addPin(pinObj)
     .then((result) => {
-      res.redirect(`/users/${req.session.user_id}`);
+      res.redirect(`/maps/${req.body.mapId}`);
     }).catch(err => {
       console.log('Error occured');
       console.log(err);
@@ -35,7 +37,7 @@ router.post('/:id/edit', (req, res) => {
   };
   editPin(pinObj)
     .then((result) => {
-      res.redirect('/pins/:id');
+      res.redirect(`/maps/${req.body.mapId}`);
     }).catch(err => {
       console.log('Error occured');
       console.log(err);
@@ -46,7 +48,7 @@ router.post('/:id/edit', (req, res) => {
 router.post('/:id/delete', (req, res) => {
   deletePin(req.params.id, req.session.user_id)
     .then((result) => {
-      res.redirect(`/users/${req.session.user_id}`);
+      res.redirect(`/maps/${req.body.mapId}`);
     }).catch(err => {
       console.log('Error occured');
       console.log(err);
