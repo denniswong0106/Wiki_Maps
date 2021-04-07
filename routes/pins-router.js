@@ -2,9 +2,6 @@ const express = require('express');
 const router  = express.Router();
 const { addPin, deletePin, editPin } = require('../lib/queriesPins');
 
-// req.body.userID
-// req.body.mapID
-// redirect to maps/id
 // /POST/pins/add
 router.post('/add', (req, res) => {
   const pinObj = {
