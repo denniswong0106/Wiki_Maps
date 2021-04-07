@@ -101,7 +101,7 @@ router.post('/new', (req, res) => {
 router.post('/:id/delete', (req, res) => {
   deleteMap(req.params.id, req.session.user_id)
     .then((result) => {
-      res.redirect('/');
+      res.redirect(`/users/${req.session.user_id}`);
     });
 });
 
