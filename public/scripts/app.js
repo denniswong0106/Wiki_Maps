@@ -13,6 +13,7 @@ $(document).ready(function() {
 
 // toggles favorite icon when clicked;
   $('.favoriteIcon').click(function() {
+    $.ajax({method: 'post', url: '/favorites/add', data: {user_id: 1, map_id: 2}});
     if ($(this).hasClass('favorited')) {
       $(this.children).removeClass('fas');
       $(this.children).addClass('far');
@@ -27,6 +28,7 @@ $(document).ready(function() {
 // allows toggle of favorites/my maps on profile page.
 $('.profileFavorites').click(function() {
   $($("#favoritesHider")[0]).slideToggle(400, function() {});
+
 });
 
 $('.profileMyMaps').click(function() {
@@ -50,3 +52,14 @@ $(window).scroll(function() {
 
 
 });
+
+// if (has class favorited) {
+//   make an ajax post request to store new favorite data ie. user_id, map_id
+// }
+// if (!has class favorited) {
+//   make an ajax post request to remove favorite data where user_id, map_id is ...
+// }
+// $.ajax({method: 'post', url: '/tweets/', data: $(this).serialize() })
+
+// $.ajax({method: 'post', url: '/favorites/add', data: {user_id: 1, map_id: 2})
+// $.ajax({method: 'post', url: '/favorites/delete', {user_id: 'test', map_id: 'test2'})
