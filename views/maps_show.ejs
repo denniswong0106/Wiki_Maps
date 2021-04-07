@@ -18,7 +18,7 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
-  <!-- <script type="text/javascript" src="/scripts/map.js"></script> -->
+  <script type="text/javascript" src="/scripts/map.js"></script>
 </head>
 
 <body id="site-body">
@@ -123,19 +123,18 @@
 
 
       for (let pin in pinsData) {
-        
+
           // Note: since google requires one long string for all html content, '' wrap quotes and + for all lines are necessary.
         let contentString = '<div class="pinContent">' +
         '<h2 class="pinTitle">' + pinsData[pin].title + '</h2>' +
         '<img class="pinImg" src="' + pinsData[pin].pin_img + '" alt="Pin image">' +
         '<p class="pinDescription">' + pinsData[pin].description +'</p>' +
         '<div class="pinButtons">' +
-        '<a href="pins/' + pinsData[pin].id + '/edit">' +
-        '<button type="button" name="button" class="btn btn-outline-primary">Edit</button>' +
-        '</a>' +
-        '<form method="POST" action="/pins/' + pinsData[pin].id + '/delete">' +
+        '<button type="button" name="button" class="btn btn-outline-primary editPin">Edit</button>' +
+        '<form method="POST" class="' + pinsData[pin].id + '" action="/pins/' + pinsData[pin].id + '/delete">' +
         '<button type="submit" name="button" class = "btn btn-outline-danger">Delete</button>' +
         '</form>' +
+        '</div>' +
         '</div>'
         addMarker({
           coords: {
@@ -146,6 +145,36 @@
         })
       }
     };
+
+    $(document).on('click', '.editPin', function () {
+
+    const pinTitle = $(this).parent().parent().children('h2')[0].innerHTML;
+    const pinId = $(this).siblings().attr('class');
+    const pinImg = $(this).parent().parent().children('img').attr('src');
+    const pinDesc = $(this).parent().parent().children('p')[0].innerHTML;
+
+    $(this).parent().parent()[0].innerHTML = '<div class="pinContent">' +
+    '<h2 class="pinTitle">Edit Pin</h2>' +
+    '<form action="/pins/' + pinId + '" method="POST" class="newPin">' +
+    '<input class="form-control hiddenForm" type="text" name="userID" value="'+ userData.id + '">' +
+    '<input class="form-control hiddenForm" type="text" name="mapId" value="'+ mapData.id + '">' +
+    '<input class="form-control hiddenForm" type="text" name="pinId" value="'+ pinId + '">' +
+    '<div class="form-group">' +
+    '<label for="newTitle">Title:</label>' +
+    '<input class="form-control" type="text" name="newTitle" value="' + pinTitle + '" placeholder="New Title">' +
+    "</div>" +
+    '<div class="form-group">' +
+    '<label for="newPinImg">URL for image:</label>' +
+    '<input class="form-control" type="text" name="newPinImg" value="' + pinImg + '" placeholder="http://www.example.com/img">' +
+    "</div>" +
+    '<div class="form-group">' +
+    '<label for="newDescription">Description:</label>' +
+    '<textarea class="form-control" id="newPinDescription" name="newDescription" rows="3">' + pinDesc + '</textarea>' +
+    "</div>" +
+    '<button type="submit" class="btn btn-primary">Submit</button></form>' +
+    '</div>'
+});
+
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ4giylj9RqjZsVyjdOT7gUfk-WINx0yc&callback=initMap"></script>
 </body>
