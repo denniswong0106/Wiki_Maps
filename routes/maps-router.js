@@ -3,9 +3,8 @@ const router  = express.Router();
 const { getMapById, deleteMap, editMapById, addMap } = require('../lib/queriesMaps');
 const { getUserById, getUserFavorite } = require('../lib/queriesUsers');
 const { getAllPinsForMapId } = require('../lib/queriesPins');
-const { rawListeners } = require('../lib/db');
 
-// /GET/maps/new
+// /GET/maps/new   =>   page to create a new map
 router.get('/new', (req, res) => {
   const id = req.session.user_id
 
@@ -82,7 +81,7 @@ router.post('/:id/edit', (req, res) => {
     });
 });
 
-// /POST/maps/new  add map route
+// /POST/maps/new   =>   add map route
 router.post('/new', (req, res) => {
   const mapObj = {
     contributor_id: req.session.user_id,
