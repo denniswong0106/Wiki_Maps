@@ -114,7 +114,8 @@
           map: map
         })
         const infoWindow = new google.maps.InfoWindow({
-          content: properties.content
+          content: properties.content,
+          minWidth: 350
         })
         marker.addListener('click', function() {
           infoWindow.open(map, marker);
@@ -153,12 +154,12 @@
     const pinImg = $(this).parent().parent().children('img').attr('src');
     const pinDesc = $(this).parent().parent().children('p')[0].innerHTML;
 
-    $(this).parent().parent()[0].innerHTML = '<div class="pinContent">' +
+    $(this).parent().parent()[0].innerHTML =
     '<h2 class="pinTitle">Edit Pin</h2>' +
-    '<form action="/pins/' + pinId + '" method="POST" class="newPin">' +
+    '<form action="/pins/' + pinId + '/edit" method="POST" class="newPin">' +
     '<input class="form-control hiddenForm" type="text" name="userID" value="'+ userData.id + '">' +
     '<input class="form-control hiddenForm" type="text" name="mapId" value="'+ mapData.id + '">' +
-    '<input class="form-control hiddenForm" type="text" name="pinId" value="'+ pinId + '">' +
+    '<input class="form-control hiddenForm" type="text" name="id" value="'+ pinId + '">' +
     '<div class="form-group">' +
     '<label for="newTitle">Title:</label>' +
     '<input class="form-control" type="text" name="newTitle" value="' + pinTitle + '" placeholder="New Title">' +
@@ -171,8 +172,9 @@
     '<label for="newDescription">Description:</label>' +
     '<textarea class="form-control" id="newPinDescription" name="newDescription" rows="3">' + pinDesc + '</textarea>' +
     "</div>" +
-    '<button type="submit" class="btn btn-primary">Submit</button></form>' +
-    '</div>'
+    '<button type="submit" class="btn btn-primary">Submit</button></form>'
+
+    $( "div.gm-style-iw-d" ).scrollTop(0);
 });
 
   </script>
