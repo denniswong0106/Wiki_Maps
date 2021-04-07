@@ -22,7 +22,7 @@ $(document).ready(function() {
       $(this.children).addClass('far');
       $(this).removeClass('favorited')
       // delete this favorite from database
-      $.ajax({method: 'post', url: '/favorites/delete', data: { map_id: 2}}) // when pages are using map data from database, delete <: 2>
+      $.ajax({method: 'post', url: '/favorites/delete', data: { map_id }}) // when pages are using map data from database, delete <: 2>
 
 
     } else {
@@ -30,7 +30,7 @@ $(document).ready(function() {
       $(this.children).addClass('fas');
       $(this).addClass('favorited');
       // add this favorite to database
-      $.ajax({method: 'post', url: '/favorites/add', data: { map_id: 2}}); // when pages are using map data from database, delete <: 2>
+      $.ajax({method: 'post', url: '/favorites/add', data: { map_id }}); // when pages are using map data from database, delete <: 2>
 
     }
   });
