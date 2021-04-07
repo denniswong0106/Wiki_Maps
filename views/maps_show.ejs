@@ -78,10 +78,32 @@
 
           let latitude = event.latLng.lat();
           let longitude = event.latLng.lng();
+          // Note: since google requires one long string for all html content, '' wrap quotes and + for all lines are necessary.
+          let contentString = '<div class="pinContent">' +
+          '<h2 class="pinTitle">New Pin</h2>' +
+          '<form action="/pins/add" method="POST" class="newPin">' +
+          '<input class="form-control hiddenForm" type="text" name="newLng" value="'+ longitude + '">' +
+          '<input class="form-control hiddenForm" type="text" name="newLat" value="'+ latitude + '">' +
+          '<input class="form-control hiddenForm" type="text" name="userID" value="'+ userData.id + '">' +
+          '<input class="form-control hiddenForm" type="text" name="mapId" value="'+ mapData.id + '">' +
+          '<div class="form-group">' +
+          '<label for="newTitle">Title:</label>' +
+          '<input class="form-control" type="text" name="newTitle" placeholder="My New Pin">' +
+          "</div>" +
+          '<div class="form-group">' +
+          '<label for="newPinImg">URL for image:</label>' +
+          '<input class="form-control" type="text" name="newPinImg" placeholder="http://www.example.com/img">' +
+          "</div>" +
+          '<div class="form-group">' +
+          '<label for="newDescription">Description:</label>' +
+          '<textarea class="form-control" id="newPinDescription" name="newDescription" rows="3"></textarea>' +
+          "</div>" +
+          '<button type="submit" class="btn btn-primary">Submit</button></form>' +
+          '</div>'
 
           addMarker({
             coords: event.latLng,
-            content: '<div class="pinContent"><h2 class="pinTitle">New Pin</h2><form action="/pins/add" method="POST" class="newPin"><input class="form-control hiddenForm" type="text" name="newLng" value="'+ longitude + '"><input class="form-control hiddenForm" type="text" name="newLat" value="'+ latitude + '"><input class="form-control hiddenForm" type="text" name="userID" value="'+ userData.id + '"><input class="form-control hiddenForm" type="text" name="mapId" value="'+ mapData.id + '"><div class="form-group"><label for="newTitle">Title:</label><input class="form-control" type="text" name="newTitle" placeholder="My New Pin"></div><div class="form-group"><label for="newPinImg">URL for image:</label><input class="form-control" type="text" name="newPinImg" placeholder="http://www.example.com/img"></div><div class="form-group"><label for="newDescription">Description:</label><textarea class="form-control" id="newPinDescription" name="newDescription" rows="3"></textarea></div><button type="submit" class="btn btn-primary">Submit</button></form></div>'
+            content: contentString
           });
 
         });
@@ -101,7 +123,20 @@
 
 
       for (let pin in pinsData) {
-        let contentString = '<div class="pinContent"><h2 class="pinTitle">' + pinsData[pin].title + '</h2><img class="pinImg" src="' + pinsData[pin].pin_img + '" alt="Pin image"><p class="pinDescription">' + pinsData[pin].description +'</p> <div class="pinButtons"><a href="pins/' + pinsData[pin].id + '/edit"> <button type="button" name="button" class="btn btn-outline-primary">Edit</button> </a><form method="POST" action="/pins/' + pinsData[pin].id + '/delete"><button type="submit" name="button" class = "btn btn-outline-danger">Delete</button></form></div>'
+        
+          // Note: since google requires one long string for all html content, '' wrap quotes and + for all lines are necessary.
+        let contentString = '<div class="pinContent">' +
+        '<h2 class="pinTitle">' + pinsData[pin].title + '</h2>' +
+        '<img class="pinImg" src="' + pinsData[pin].pin_img + '" alt="Pin image">' +
+        '<p class="pinDescription">' + pinsData[pin].description +'</p>' +
+        '<div class="pinButtons">' +
+        '<a href="pins/' + pinsData[pin].id + '/edit">' +
+        '<button type="button" name="button" class="btn btn-outline-primary">Edit</button>' +
+        '</a>' +
+        '<form method="POST" action="/pins/' + pinsData[pin].id + '/delete">' +
+        '<button type="submit" name="button" class = "btn btn-outline-danger">Delete</button>' +
+        '</form>' +
+        '</div>'
         addMarker({
           coords: {
             lat: Number(pinsData[pin].latitude),
