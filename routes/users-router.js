@@ -12,7 +12,7 @@ router.get('/logout/:id', (req, res) => {
 
 //  /GET/users/:id
 router.get('/:id', (req, res) => {
-  const templateVars = {};
+  const templateVars = { light: req.session.light };
   getUserById(req.params.id)
     .then((user) => {
       templateVars.user = user;

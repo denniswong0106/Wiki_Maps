@@ -1,17 +1,17 @@
 const express = require('express');
 const router  = express.Router();
 
-router.get('/on', (req, res) => {
+router.get('/off', (req, res) => {
 
-  req.session.light = 'on';
-  res.redirect('/');
+  req.session.light = 'off';
+  res.redirect('back');
 
 });
 
-router.get('/off', (req, res) => {
+router.get('/on', (req, res) => {
 
   req.session.light = null;
-  res.redirect('/');
+  res.redirect('back');
 
 });
 
