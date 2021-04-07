@@ -21,7 +21,7 @@ router.post('/add', (req, res) => {
 });
 
 // /POST/pins/:id/edit
-router.post('/:id', (req, res) => {
+router.post('/:id/edit', (req, res) => {
   const pinObj = {
     longitude: req.body.newLng,
     latitude: req.body.newLat,
