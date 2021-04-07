@@ -12,6 +12,7 @@ const morgan     = require('morgan');
 const cookieSession = require('cookie-session');
 const { getMaps } = require('./lib/queriesMaps');
 const { getUserById, getUserFavorite } = require('./lib/queriesUsers');
+const { getFavoritesByUserId } = require('./lib/queriesFavorites');
 
 
 // PG database client/connection setup
@@ -48,6 +49,7 @@ const usersRouter = require('./routes/users-router');
 const pinsRouter = require('./routes/pins-router');
 const favoritesRouter = require('./routes/favorites-router');
 
+
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // app.use("/api/users", usersRoutes(db));
@@ -82,9 +84,17 @@ app.get('/', (req, res) => {
     .then((userFavorites) => {
       templateVars.favorites = userFavorites;
 
+      return getFavoritesByUserId(req.session.user_id);
+    })
+    .then((mapIdsFavorites) => {
+      templateVars.mapIdsFavorites = mapIdsFavorites;
+
       console.log('templateVars homepage: ', templateVars);
       return res.render('index', templateVars);
     });
+
+
+
 });
 
 app.get('*', (req, res) => {
