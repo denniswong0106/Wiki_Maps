@@ -25,83 +25,38 @@
     <div id="mainPageIntro">
       <h1>Explore maps from around the world!</h1>
     </div>
-
+    <% for(let i = 1; i < maps.length; i += 2) { %>
     <div class="mapRow">
       <div class="mapBox">
-        <a href="/maps/:id">
-        <div class="backgroundMapImg">
+        <% let mapRef = `/maps/${maps[i-1].id}` %>
+        <a href='<%= mapRef %>'>
+        <% let mapImg = `${maps[i-1].thumbnail_img}` %>
+        <div class="backgroundMapImg" style='background-image:url(<%= mapImg %>);'>
         </div>
         </a>
         <button class="favoriteIcon" type="button" name="button">
           <i class="far fa-star"></i>
         </button>
-        <p class="mapDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-        <h4 class="mapTitle">Map Title</h4>
+        <p class="mapDescription"><%= maps[i-1].description %></p>
+        <h4 class="mapTitle"><%= maps[i-1].title %></h4>
       </div>
       <div class="mapBox">
-        <a href="/maps/:id">
-        <div class="backgroundMapImg">
+        <% let mapRef2 = `/maps/${maps[i].id}` %>
+        <a href='<%= mapRef2 %>'>
+        <% let mapImg2 = `${maps[i].thumbnail_img}` %>
+        <div class="backgroundMapImg" style='background-image:url(<%= mapImg2 %>);'>
         </div>
         </a>
         <button class="favoriteIcon" type="button" name="button">
           <i class="far fa-star"></i>
         </button>
-        <p class="mapDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-        <h4 class="mapTitle">Map Title</h4>
+        <p class="mapDescription"><%= maps[i].description %></p>
+        <h4 class="mapTitle"><%= maps[i].title %></h4>
       </div>
     </div>
-
-    <div class="mapRow">
-      <div class="mapBox">
-        <a href="/maps/:id">
-        <div class="backgroundMapImg">
-        </div>
-        </a>
-        <button class="favoriteIcon" type="button" name="button">
-          <i class="far fa-star"></i>
-        </button>
-        <p class="mapDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-        <h4 class="mapTitle">Map Title</h4>
-      </div>
-      <div class="mapBox">
-        <a href="/maps/:id">
-        <div class="backgroundMapImg">
-        </div>
-        </a>
-        <button class="favoriteIcon" type="button" name="button">
-          <i class="far fa-star"></i>
-        </button>
-        <p class="mapDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-        <h4 class="mapTitle">Map Title</h4>
-      </div>
-    </div>
-
-    <div class="mapRow">
-      <div class="mapBox">
-        <a href="/maps/:id">
-        <div class="backgroundMapImg">
-        </div>
-        </a>
-        <button class="favoriteIcon" type="button" name="button">
-          <i class="far fa-star"></i>
-        </button>
-        <p class="mapDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-        <h4 class="mapTitle">Map Title</h4>
-      </div>
-      <div class="mapBox">
-        <a href="/maps/:id">
-        <div class="backgroundMapImg">
-        </div>
-        </a>
-        <button class="favoriteIcon" type="button" name="button">
-          <i class="far fa-star"></i>
-        </button>
-        <p class="mapDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-        <h4 class="mapTitle">Map Title</h4>
-      </div>
-    </div>
-    <div class="navButtonDiv">
-      <button type="button" id="navButton" class="btn btn-dark hidden">Return to Top</button>
-    </div>
+  <% } %>
+  <div class="navButtonDiv">
+    <button type="button" id="navButton" class="btn btn-dark hidden">Return to Top</button>
+  </div>
   </body>
 </html>

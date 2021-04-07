@@ -11,6 +11,15 @@ $brand-text-color: #eeeeee;
   background-image: url("https://www.transparenttextures.com/patterns/inflicted.png");
 }
 
+#welcomeMsg {
+  color: $brand-text-color;
+  padding-right: 2rem;
+}
+
+.userAccountButtons {
+  margin-right: 20px;
+}
+
 .mapRow {
   padding-top: 2em;
   display: flex;

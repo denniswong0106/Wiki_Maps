@@ -24,7 +24,7 @@
 <body id="site-body">
   <%- include('partials/_header') %>
   <div class="titleDiv">
-  <h1>Map Title</h1>
+  <h1><%= map.title %></h1>
     <button id="mapsShowStar" class="favoriteIcon" type="button" name="button">
       <i class="far fa-star"></i>
     </button>
@@ -36,16 +36,34 @@
     </div>
   </div>
   <div class="buttonContainer">
-  <a href="/maps/:id/edit"><button type="button" name="button" class="btn btn-primary">Edit Map</button></a>
-    <form method="POST" action='/maps/:id/delete'><button type="submit" name="button" class = "btn btn-danger">Delete Map</button></form>
+    <% let editMap = `/maps/${map.id}/edit` %>
+  <a href="<%= editMap %>"><button type="button" name="button" class="btn btn-primary">Edit Map</button></a>
+  <% let deleteMap = `/maps/${map.id}/delete` %>
+    <form method="POST" action='<%= deleteMap %>'><button type="submit" name="button" class = "btn btn-danger">Delete Map</button></form>
   </div>
+
+
   <script type="text/javascript">
+    const getPins = '<%- JSON.stringify(pins) %>';
+    const pinsData = JSON.parse(getPins);
+
+    let zoomStart = 2;
+    let latStart = 0.0000;
+    let lngStart = 0.0000;
+
+    if (pinsData) {
+      zoomStart = 10;
+      latStart = Number(pinsData[0].latitude);
+      lngStart = Number(pinsData[0].longitude);
+    }
+
     function initMap() {
+
       const options = {
-        zoom: 10,
+        zoom: zoomStart,
         center: {
-          lat: 49.2827,
-          lng: -123.1207
+          lat: latStart,
+          lng: lngStart
         }
       };
       const map = new google.maps.Map(document.getElementById('map-container'), options);
@@ -74,13 +92,17 @@
         })
       }
 
-      addMarker({
-        coords: {
-          lat: 49.1959,
-          lng: -123.1780
-        },
-        content: '<div class="pinContent"><h2 class="pinTitle">Pin Title</h2><img class="pinImg" src="https://images.unsplash.com/photo-1541173109020-9c5d8a48e169?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FmZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80" alt="Pin image"><p class="pinDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit isvoluptatevelit</p> <div class="pinButtons"><a href="pins/:id/edit"> <button type="button" name="button" class="btn btn-outline-primary">Edit</button> </a><form method="POST" action="/pins/:id/delete"><button type="submit" name="button" class = "btn btn-outline-danger">Delete</button></form></div>'
-      })
+
+      for (let pin in pinsData) {
+        let contentString = '<div class="pinContent"><h2 class="pinTitle">' + pinsData[pin].title + '</h2><img class="pinImg" src="' + pinsData[pin].pin_img + '" alt="Pin image"><p class="pinDescription">' + pinsData[pin].description +'</p> <div class="pinButtons"><a href="pins/' + pinsData[pin].id + '/edit"> <button type="button" name="button" class="btn btn-outline-primary">Edit</button> </a><form method="POST" action="/pins/' + pinsData[pin].id + '/delete"><button type="submit" name="button" class = "btn btn-outline-danger">Delete</button></form></div>'
+        addMarker({
+          coords: {
+            lat: Number(pinsData[pin].latitude),
+            lng: Number(pinsData[pin].longitude)
+          },
+          content: contentString
+        })
+      }
     };
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ4giylj9RqjZsVyjdOT7gUfk-WINx0yc&callback=initMap"></script>
