@@ -101,7 +101,7 @@ app.get('*', (req, res) => {
   res.status(404).send('Error 404 Page not found.');
 });
 
-app.listen(PORT, ENV, () => {
-  console.log(ENV)
+app.listen(PORT, () => {
+  console.log(process.env.DB_URL)
   console.log(`Example app listening on port ${PORT}`);
 });
