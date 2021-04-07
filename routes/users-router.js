@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/queriesUsers');
 const { getContributedByUser } = require('../lib/queriesMaps');
+const {getFavoritesByUserId} = require('../lib/queriesFavorites')
 
 // /POST/users/logout    deletes cookie session
 router.post('/logout', (req, res) => {
@@ -25,6 +26,11 @@ router.get('/:id', (req, res) => {
     })
     .then((contributions) => {
       templateVars.contributions = contributions
+
+    return getFavoritesByUserId(req.session.user_id);
+  })
+  .then((mapIdsFavorites) => {
+    templateVars.mapIdsFavorites = mapIdsFavorites;
 
       console.log('templateVars users/:id/: ', templateVars);
       return res.render('profile_show', templateVars);
