@@ -4,9 +4,9 @@ const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/querie
 const { getContributedByUser } = require('../lib/queriesMaps');
 const {getFavoritesByUserId} = require('../lib/queriesFavorites')
 
-// /POST/users/logout    deletes cookie session
-router.post('/logout', (req, res) => {
-  req.session.user_id = null;
+// /GET/users/logout/:id   =>  deletes cookie session
+router.get('/logout/:id', (req, res) => {
+  req.session = null;
   res.redirect('/');
 });
 
@@ -22,10 +22,10 @@ router.get('/:id', (req, res) => {
     .then((userFavorite) => {
       templateVars.userFavourite = userFavorite;
 
-      return getContributedByUser(req.params.id)
+      return getContributedByUser(req.params.id);
     })
     .then((contributions) => {
-      templateVars.contributions = contributions
+      templateVars.contributions = contributions;
 
     return getFavoritesByUserId(req.session.user_id);
   })
@@ -34,6 +34,9 @@ router.get('/:id', (req, res) => {
 
       console.log('templateVars users/:id/: ', templateVars);
       return res.render('profile_show', templateVars);
+    }).catch(err => {
+      console.log('Error occured');
+      console.log(err);
     });
 
 });
@@ -44,7 +47,10 @@ router.get('/login/:id', (req, res) => {
   getUserById(req.params.id)
     .then((user) => {
       return res.redirect('/');
-    })
+    }).catch(err => {
+      console.log('Error occured');
+      console.log(err);
+    });
 });
 
 // /POST/users/:id    adds favourites

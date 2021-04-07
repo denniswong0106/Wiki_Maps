@@ -1,24 +1,26 @@
 const express = require('express');
 const router  = express.Router();
-const { getMapById, deleteMap, editMapById } = require('../lib/queriesMaps');
+const { getMapById, deleteMap, editMapById, addMap } = require('../lib/queriesMaps');
 const { getUserById, getUserFavorite } = require('../lib/queriesUsers');
 const { getAllPinsForMapId } = require('../lib/queriesPins');
 
-// /GET/maps/new
+// /GET/maps/new   =>   page to create a new map
 router.get('/new', (req, res) => {
-  const id = req.session.user_id
+  const id = req.session.user_id;
 
   getUserById(id)
     .then((user) => {
       const templateVars = {
         user: user
-      }
+      };
       console.log('templateVars /maps/new/: ', templateVars);
       return res.render('maps_new', templateVars);
+    }).catch(err => {
+      console.log('Error occured');
+      console.log(err);
     });
 });
 
-// add get all pins
 // /GET/maps/:id
 router.get('/:id', (req, res) => {
   const templateVars = {};
@@ -30,7 +32,7 @@ router.get('/:id', (req, res) => {
       return getUserById(req.session.user_id);
     })
     .then((user) => {
-      templateVars.user = user
+      templateVars.user = user;
 
       return getUserFavorite(req.session.user_id);
     })
@@ -44,8 +46,11 @@ router.get('/:id', (req, res) => {
 
       console.log('templateVars maps/:id/: ', templateVars);
       return res.render('maps_show', templateVars);
+    }).catch(err => {
+      console.log('Error occured');
+      console.log(err);
     });
-  });
+});
 
 
 // /POST/maps/:id/edit
@@ -59,39 +64,62 @@ router.get('/:id/edit', (req, res) => {
       return getUserById(req.session.user_id);
     })
     .then((user) => {
-      templateVars.user = user
+      templateVars.user = user;
 
       console.log('templateVars maps/:id/edit/: ', templateVars);
       return res.render('maps_edit', templateVars);
+    }).catch(err => {
+      console.log('Error occured');
+      console.log(err);
     });
 });
 
 // /POST/maps/:id/edit
 router.post('/:id/edit', (req, res) => {
-  const obj = {
+  const mapObj = {
     title: req.body.newMapTitle,
     description: req.body.newMapDescription,
     thumbnail_img: req.body.newMapImg,
     city: req.body.newMapCity,
     id: req.params.id
-  }
+  };
 
-  editMapById(obj)
+  editMapById(mapObj)
     .then((result) => {
-      res.redirect('/');
+      res.redirect(`/maps/${req.params.id}`);
+    }).catch(err => {
+      console.log('Error occured');
+      console.log(err);
     });
 });
 
-// /POST/maps/new  add map route
+// /POST/maps/new   =>   add map route
 router.post('/new', (req, res) => {
+  const mapObj = {
+    contributor_id: req.session.user_id,
+    title: req.body.newMapTitle,
+    description: req.body.newMapDescription,
+    thumbnail_img: req.body.newMapImg,
+    city: req.body.newMapCity
+  };
 
+  addMap(mapObj)
+    .then((result) => {
+      res.redirect(`/users/${req.session.user_id}`);
+    }).catch(err => {
+      console.log('Error occured');
+      console.log(err);
+    });
 });
 
 // /POST/maps/:id/delete
 router.post('/:id/delete', (req, res) => {
   deleteMap(req.params.id, req.session.user_id)
     .then((result) => {
-      res.redirect('/');
+      res.redirect(`/users/${req.session.user_id}`);
+    }).catch(err => {
+      console.log('Error occured');
+      console.log(err);
     });
 });
 
