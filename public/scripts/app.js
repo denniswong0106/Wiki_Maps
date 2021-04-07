@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 // toggles favorite icon when clicked;
   $('.favoriteIcon').click(function() {
-    $.ajax({method: 'post', url: '/favorites/add', data: {user_id: 1, map_id: 2}});
+    $.ajax({method: 'post', url: '/favorites/add', data: { map_id: 2}});
     if ($(this).hasClass('favorited')) {
       $(this.children).removeClass('fas');
       $(this.children).addClass('far');

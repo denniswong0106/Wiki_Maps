@@ -7,7 +7,11 @@ const {  addFavorite, removeFavorite, getFavoriteIfExist } = require('../lib/que
 router.post('/add', (req, res) => {
   const templateVars = {};
 
-  favoriteObj = req.body;
+  const user_id = req.session.user_id;
+  console.log('user_id:', user_id)
+  const favoriteObj = req.body;
+  favoriteObj.user_id = user_id;
+  console.log('favoriteObj:', favoriteObj);
 
   addFavorite(favoriteObj)
     .then(result => {
