@@ -2,6 +2,9 @@ const express = require('express');
 const router  = express.Router();
 const { addPin, deletePin, editPin } = require('../lib/queriesPins');
 
+// req.body.userID
+// req.body.mapID
+// redirect to maps/id
 // /POST/pins/add
 router.post('/add', (req, res) => {
   const pinObj = {
@@ -9,7 +12,7 @@ router.post('/add', (req, res) => {
     latitude: req.body.newLat,
     title: req.body.newTitle,
     description: req.body.newDescription,
-    pin_img: req.body.newPinImg,
+    pin_img: req.body.newPinImg
   };
   addPin(pinObj)
     .then((result) => {
