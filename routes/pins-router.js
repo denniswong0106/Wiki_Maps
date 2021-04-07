@@ -2,6 +2,9 @@ const express = require('express');
 const router  = express.Router();
 const { addPin, deletePin, editPin } = require('../lib/queriesPins');
 
+// req.body.userID
+// req.body.mapID
+// redirect to maps/id
 // /POST/pins/add
 router.post('/add', (req, res) => {
   const pinObj = {
@@ -10,10 +13,12 @@ router.post('/add', (req, res) => {
     title: req.body.newTitle,
     description: req.body.newDescription,
     pin_img: req.body.newPinImg,
+    user_id: req.body.userID,
+    map_id: req.body.mapId
   };
   addPin(pinObj)
     .then((result) => {
-      res.redirect(`/users/${req.session.user_id}`);
+      res.redirect(`/maps/${req.body.mapId}`);
     }).catch(err => {
       console.log('Error occured');
       console.log(err);
@@ -21,7 +26,7 @@ router.post('/add', (req, res) => {
 });
 
 // /POST/pins/:id/edit
-router.post('/:id', (req, res) => {
+router.post('/:id/edit', (req, res) => {
   const pinObj = {
     longitude: req.body.newLng,
     latitude: req.body.newLat,
@@ -32,7 +37,7 @@ router.post('/:id', (req, res) => {
   };
   editPin(pinObj)
     .then((result) => {
-      res.redirect('/pins/:id');
+      res.redirect(`/maps/${req.body.mapId}`);
     }).catch(err => {
       console.log('Error occured');
       console.log(err);
@@ -43,7 +48,7 @@ router.post('/:id', (req, res) => {
 router.post('/:id/delete', (req, res) => {
   deletePin(req.params.id, req.session.user_id)
     .then((result) => {
-      res.redirect(`/users/${req.session.user_id}`);
+      res.redirect(`/maps/${req.body.mapId}`);
     }).catch(err => {
       console.log('Error occured');
       console.log(err);
