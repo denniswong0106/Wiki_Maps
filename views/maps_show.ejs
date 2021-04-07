@@ -24,7 +24,7 @@
 <body id="site-body">
   <%- include('partials/_header') %>
   <div class="titleDiv">
-  <h1>Map Title</h1>
+  <h1><%= map.title %></h1>
     <button id="mapsShowStar" class="favoriteIcon" type="button" name="button">
       <i class="far fa-star"></i>
     </button>
@@ -36,16 +36,34 @@
     </div>
   </div>
   <div class="buttonContainer">
-  <a href="/maps/:id/edit"><button type="button" name="button" class="btn btn-primary">Edit Map</button></a>
-    <form method="POST" action='/maps/:id/delete'><button type="submit" name="button" class = "btn btn-danger">Delete Map</button></form>
+    <% let editMap = `/maps/${map.id}/edit` %>
+  <a href="<%= editMap %>"><button type="button" name="button" class="btn btn-primary">Edit Map</button></a>
+  <% let deleteMap = `/maps/${map.id}/delete` %>
+    <form method="POST" action='<%= deleteMap %>'><button type="submit" name="button" class = "btn btn-danger">Delete Map</button></form>
   </div>
   <script type="text/javascript">
+
+  if (<% pins %>) {
+
+    const zoomStart = 10;
+    const latStart = <% pins[0].latitude %>;
+    const lngStart = <% pins[0].longitude %>;
+
+  } else {
+
+    const zoomStart = 1;
+    const latStart = 0;
+    const lngStart = 0;
+
+    }
+
     function initMap() {
+
       const options = {
-        zoom: 10,
+        zoom: 1,
         center: {
-          lat: 49.2827,
-          lng: -123.1207
+          lat: 0,
+          lng: 0
         }
       };
       const map = new google.maps.Map(document.getElementById('map-container'), options);
