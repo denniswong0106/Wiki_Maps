@@ -7,26 +7,38 @@
 //       $("<div>").text(user.name).appendTo($("body"));
 //     }
 //   });;
-// });
+// }); siblings().find("output")
 
 $(document).ready(function() {
 
 // toggles favorite icon when clicked;
   $('.favoriteIcon').click(function() {
+
+    let map_id = $(this).siblings().attr('href').substr(6); // reads the href for the map and stores the :id of ref as map_id
+    console.log('map_id:', map_id);
+
     if ($(this).hasClass('favorited')) {
       $(this.children).removeClass('fas');
       $(this.children).addClass('far');
       $(this).removeClass('favorited')
+      // delete this favorite from database
+      $.ajax({method: 'post', url: '/favorites/delete', data: { map_id: 2}}) // when pages are using map data from database, delete <: 2>
+
+
     } else {
       $(this.children).removeClass('far');
       $(this.children).addClass('fas');
-      $(this).addClass('favorited')
+      $(this).addClass('favorited');
+      // add this favorite to database
+      $.ajax({method: 'post', url: '/favorites/add', data: { map_id: 2}}); // when pages are using map data from database, delete <: 2>
+
     }
   });
 
 // allows toggle of favorites/my maps on profile page.
 $('.profileFavorites').click(function() {
   $($("#favoritesHider")[0]).slideToggle(400, function() {});
+
 });
 
 $('.profileMyMaps').click(function() {
@@ -50,3 +62,14 @@ $(window).scroll(function() {
 
 
 });
+
+// if (has class favorited) {
+//   make an ajax post request to store new favorite data ie. user_id, map_id
+// }
+// if (!has class favorited) {
+//   make an ajax post request to remove favorite data where user_id, map_id is ...
+// }
+// $.ajax({method: 'post', url: '/tweets/', data: $(this).serialize() })
+
+// $.ajax({method: 'post', url: '/favorites/add', data: {user_id: 1, map_id: 2})
+// $.ajax({method: 'post', url: '/favorites/delete', {user_id: 'test', map_id: 'test2'})
