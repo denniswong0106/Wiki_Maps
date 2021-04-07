@@ -80,7 +80,6 @@ router.post('/:id/edit', (req, res) => {
     title: req.body.newMapTitle,
     description: req.body.newMapDescription,
     thumbnail_img: req.body.newMapImg,
-    city: req.body.newMapCity,
     id: req.params.id
   };
 
@@ -99,8 +98,7 @@ router.post('/new', (req, res) => {
     contributor_id: req.session.user_id,
     title: req.body.newMapTitle,
     description: req.body.newMapDescription,
-    thumbnail_img: req.body.newMapImg,
-    city: req.body.newMapCity
+    thumbnail_img: req.body.newMapImg
   };
 
   addMap(mapObj)

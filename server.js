@@ -93,8 +93,6 @@ app.get('/', (req, res) => {
       return res.render('index', templateVars);
     });
 
-
-
 });
 
 app.get('*', (req, res) => {
