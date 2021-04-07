@@ -3,7 +3,7 @@ const router  = express.Router();
 const { getUserById, getUserFavorite, addUserFavorite } = require('../lib/queriesUsers');
 const { getContributedByUser } = require('../lib/queriesMaps');
 
-// /POST/users/logout/:id   =>  deletes cookie session
+// /GET/users/logout/:id   =>  deletes cookie session
 router.get('/logout/:id', (req, res) => {
   req.session = null;
   res.redirect('/');
