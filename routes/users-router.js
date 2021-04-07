@@ -21,13 +21,16 @@ router.get('/:id', (req, res) => {
     .then((userFavorite) => {
       templateVars.userFavourite = userFavorite;
 
-      return getContributedByUser(req.params.id)
+      return getContributedByUser(req.params.id);
     })
     .then((contributions) => {
-      templateVars.contributions = contributions
+      templateVars.contributions = contributions;
 
       console.log('templateVars users/:id/: ', templateVars);
       return res.render('profile_show', templateVars);
+    }).catch(err => {
+      console.log('Error occured');
+      console.log(err);
     });
 
 });
@@ -38,7 +41,10 @@ router.get('/login/:id', (req, res) => {
   getUserById(req.params.id)
     .then((user) => {
       return res.redirect('/');
-    })
+    }).catch(err => {
+      console.log('Error occured');
+      console.log(err);
+    });
 });
 
 // /POST/users/:id    adds favourites
