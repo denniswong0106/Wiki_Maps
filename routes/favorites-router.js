@@ -1,14 +1,14 @@
 const express = require('express');
 const router  = express.Router();
-const {  addFavorite, deleteFavorite, getFavoriteIfExist } = require('../lib/queriesFavorites');
+const {  addFavorite, deleteFavorite } = require('../lib/queriesFavorites');
 
 
 // Add favorite to database
 router.post('/add', (req, res) => {
 
   const user_id = req.session.user_id;
-  console.log('user_id:', user_id)
   const favoriteObj = req.body;
+
   favoriteObj.user_id = user_id;
   console.log('favoriteObj:', favoriteObj);
 
@@ -28,8 +28,8 @@ router.post('/add', (req, res) => {
 router.post('/delete', (req, res) => {
 
   const user_id = req.session.user_id;
-  console.log('user_id:', user_id)
   const favoriteObj = req.body;
+
   favoriteObj.user_id = user_id;
   console.log('favoriteObj:', favoriteObj);
 

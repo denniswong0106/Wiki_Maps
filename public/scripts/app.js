@@ -7,25 +7,30 @@
 //       $("<div>").text(user.name).appendTo($("body"));
 //     }
 //   });;
-// });
+// }); siblings().find("output")
 
 $(document).ready(function() {
 
 // toggles favorite icon when clicked;
   $('.favoriteIcon').click(function() {
+
+    let map_id = $(this).siblings().attr('href').substr(6); // reads the href for the map and stores the :id of ref as map_id
+    console.log('map_id:', map_id);
+
     if ($(this).hasClass('favorited')) {
       $(this.children).removeClass('fas');
       $(this.children).addClass('far');
       $(this).removeClass('favorited')
       // delete this favorite from database
-      $.ajax({method: 'post', url: '/favorites/delete', data: { map_id: 2}});
+      $.ajax({method: 'post', url: '/favorites/delete', data: { map_id: 2}}) // when pages are using map data from database, delete <: 2>
+
 
     } else {
       $(this.children).removeClass('far');
       $(this.children).addClass('fas');
       $(this).addClass('favorited');
       // add this favorite to database
-      $.ajax({method: 'post', url: '/favorites/add', data: { map_id: 2}});
+      $.ajax({method: 'post', url: '/favorites/add', data: { map_id: 2}}); // when pages are using map data from database, delete <: 2>
 
     }
   });
