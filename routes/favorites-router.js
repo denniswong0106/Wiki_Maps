@@ -15,12 +15,12 @@ router.post('/add', (req, res) => {
   addFavorite(favoriteObj)
     .then(result => {
       console.log('successfully added to favorites:', result);
-      res.send()
+      res.send();
     })
     .catch(err => {
-      console.log(err)
-      res.statusCode(400).end('Error, unable to add to favorites')
-    })
+      console.log(err);
+      res.statusCode(400).end('Error, unable to add to favorites');
+    });
 
 });
 
@@ -36,12 +36,12 @@ router.post('/delete', (req, res) => {
   deleteFavorite(favoriteObj)
     .then(result => {
       console.log('successfully deleted to favorites:', result);
-      res.send()
+      res.send();
     })
     .catch(err => {
-      console.log(err)
-      res.statusCode(400).end('Error, unable to delete from favorites')
-    })
+      console.log(err);
+      res.statusCode(400).end('Error, unable to delete from favorites');
+    });
 
 
 });
