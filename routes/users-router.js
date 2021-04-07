@@ -6,7 +6,7 @@ const {getFavoritesByUserId} = require('../lib/queriesFavorites')
 
 // /GET/users/logout/:id   =>  deletes cookie session
 router.get('/logout/:id', (req, res) => {
-  req.session = null;
+  req.session.user_id = null;
   res.redirect('/');
 });
 
