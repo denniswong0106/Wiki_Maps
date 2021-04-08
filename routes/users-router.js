@@ -13,9 +13,16 @@ router.get('/logout/:id', (req, res) => {
 //  /GET/users/:id
 router.get('/:id', (req, res) => {
   const templateVars = { light: req.session.light };
-  getUserById(req.params.id)
+  const id = req.session.user_id;
+
+  getUserById(id)
     .then((user) => {
       templateVars.user = user;
+
+      return getUserById(req.params.id);
+    })
+    .then((userProfile) => {
+      templateVars.userProfile = userProfile;
 
       return getUserFavorite(req.params.id);
     })
