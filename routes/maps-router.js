@@ -107,6 +107,7 @@ router.post('/new', (req, res) => {
     title: req.body.newMapTitle,
     description: req.body.newMapDescription,
     thumbnail_img: req.body.newMapImg
+
   };
 
   addMap(mapObj)
