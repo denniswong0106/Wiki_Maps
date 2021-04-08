@@ -21,18 +21,17 @@ router.post('/add', (req, res) => {
 });
 
 // /POST/pins/:id/edit
-router.post('/:id', (req, res) => {
+router.post('/:id/edit', (req, res) => {
   const pinObj = {
-    longitude: req.body.newLng,
-    latitude: req.body.newLat,
     title: req.body.newTitle,
     description: req.body.newDescription,
     pin_img: req.body.newPinImg,
-    id: req.params.id
+    id: req.params.id,
+    user_id: req.session.user_id
   };
   editPin(pinObj)
     .then((result) => {
-      res.redirect('/pins/:id');
+      res.redirect('back');
     }).catch(err => {
       console.log('Error occured');
       console.log(err);
