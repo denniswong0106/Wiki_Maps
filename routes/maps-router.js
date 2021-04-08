@@ -60,7 +60,7 @@ router.get('/:id', (req, res) => {
 });
 
 
-// /POST/maps/:id/edit
+// /GET/maps/:id/edit
 router.get('/:id/edit', (req, res) => {
   const templateVars = { light: req.session.light };
 
@@ -101,6 +101,7 @@ router.post('/:id/edit', (req, res) => {
 
 // /POST/maps/new   =>   add map route
 router.post('/new', (req, res) => {
+
   const mapObj = {
     contributor_id: req.session.user_id,
     title: req.body.newMapTitle,
@@ -110,7 +111,7 @@ router.post('/new', (req, res) => {
 
   addMap(mapObj)
     .then((result) => {
-      res.redirect(`/users/${req.session.user_id}`);
+      res.redirect(`/maps/${result.id}`);
     }).catch(err => {
       console.log('Error occured');
       console.log(err);
