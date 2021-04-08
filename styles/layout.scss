@@ -1,9 +1,11 @@
 $site-background: #536162;
 $brand-color: #393e46;
 $brand-text-color: #eeeeee;
+$font-regular: 'Roboto', sans-serif;
 
 #site-body {
   background-color: $site-background;
+  font-family: $font-regular;
   display: flex;
   flex-direction: column;
   justify-content: center;

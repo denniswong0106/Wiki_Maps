@@ -1,10 +1,15 @@
 $brand-color: #a1cae2;
 $brand-text-color: #393e46;
+$font-brand: 'Sawarabi Mincho', sans-serif;
 
 #navbar {
   background-color: $brand-color;
   .brand-text {
     color: $brand-text-color;
+  }
+  .brand-icon {
+    font-family: $font-brand;
+    font-weight: bold;
   }
 }
 
