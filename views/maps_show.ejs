@@ -55,6 +55,9 @@
   <div class="buttonContainer">
     <% let editMap = `/maps/${map.id}/edit` %>
   <a href="<%= editMap %>"><button type="button" name="button" class="btn btn-primary">Edit Map</button></a>
+  <% if (!pins.length) { %>
+      <h5>Click anywhere on the map to place a pin!</h5>
+  <% } %>
   <% let deleteMap = `/maps/${map.id}/delete` %>
     <form method="POST" action='<%= deleteMap %>'><button type="submit" name="button" class = "btn btn-danger">Delete Map</button></form>
   </div>
