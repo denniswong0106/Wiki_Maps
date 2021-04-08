@@ -26,8 +26,6 @@ module.exports = {
     },
     seeds: {
       directory: __dirname + "/db/seeds"
-      // if generating demo data:
-      // directory: __dirname + "/db/seeds-demo"
     }
   }
 };
