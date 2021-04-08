@@ -34,6 +34,15 @@
     <div id="mainPageIntro">
       <h1>Explore maps from around the world!</h1>
     </div>
+    <% if (!user) { %>
+    <h5 id='siteInstructions'>
+      View user created maps below. Log in to edit maps or create your own!
+    </h5>
+    <% } else { %>
+    <h5 id='siteInstructions'>
+      View and collaborate on user maps below, or create your own!
+    </h5>
+    <% } %>
     <% for(let i = 1; i < maps.length; i += 2) { %>
     <div class="mapRow">
       <div class="mapBox">
