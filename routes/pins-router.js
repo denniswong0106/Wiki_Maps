@@ -10,10 +10,13 @@ router.post('/add', (req, res) => {
     title: req.body.newTitle,
     description: req.body.newDescription,
     pin_img: req.body.newPinImg,
+    user_id: req.session.user_id,
+    map_id: req.body.mapId
   };
+  
   addPin(pinObj)
     .then((result) => {
-      res.redirect(`/users/${req.session.user_id}`);
+      res.redirect('back');
     }).catch(err => {
       console.log('Error occured');
       console.log(err);
