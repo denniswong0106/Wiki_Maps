@@ -1,0 +1,22 @@
+#newMapForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  color: #393e46;
+}
+
+h2 {
+  padding-top: 2rem;
+  color: #393e46;
+}
+
+label {
+  margin-bottom: 0.1rem;
+}
+
+input {
+  margin-top: 0.1rem;
+}
+
+/*# sourceMappingURL=newMapLight.css.map */

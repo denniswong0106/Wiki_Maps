@@ -10,12 +10,10 @@ router.post('/add', (req, res) => {
     title: req.body.newTitle,
     description: req.body.newDescription,
     pin_img: req.body.newPinImg,
-    user_id: req.body.userID,
-    map_id: req.body.mapId
   };
   addPin(pinObj)
     .then((result) => {
-      res.redirect(`/maps/${req.body.mapId}`);
+      res.redirect(`/users/${req.session.user_id}`);
     }).catch(err => {
       console.log('Error occured');
       console.log(err);
@@ -23,7 +21,7 @@ router.post('/add', (req, res) => {
 });
 
 // /POST/pins/:id/edit
-router.post('/:id/edit', (req, res) => {
+router.post('/:id', (req, res) => {
   const pinObj = {
     longitude: req.body.newLng,
     latitude: req.body.newLat,
@@ -34,7 +32,7 @@ router.post('/:id/edit', (req, res) => {
   };
   editPin(pinObj)
     .then((result) => {
-      res.redirect(`/maps/${req.body.mapId}`);
+      res.redirect('/pins/:id');
     }).catch(err => {
       console.log('Error occured');
       console.log(err);
@@ -45,7 +43,7 @@ router.post('/:id/edit', (req, res) => {
 router.post('/:id/delete', (req, res) => {
   deletePin(req.params.id, req.session.user_id)
     .then((result) => {
-      res.redirect(`/maps/${req.body.mapId}`);
+      res.redirect(`/users/${req.session.user_id}`);
     }).catch(err => {
       console.log('Error occured');
       console.log(err);

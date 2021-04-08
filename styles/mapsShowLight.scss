@@ -1,0 +1,86 @@
+$brand-text-color: #393e46;
+$brand-color: #f7f3e9;
+
+h1 {
+  padding-top: 0.5rem;
+  color: $brand-text-color;
+}
+
+#map-container {
+  width: 60%;
+  height: 450px;
+  align-content: center;
+  border: solid black 1px;
+}
+
+#mapDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#mapsShowStar {
+  bottom: 0;
+  top: auto;
+  right: 18rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2.5rem;
+}
+
+.titleDiv {
+  position: relative;
+}
+
+.pinImg {
+  max-height: 200px;
+  max-width: 200px;
+}
+
+.pinContent {
+  background-color: $brand-color;
+  color: $brand-text-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+#newMapForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  color: $brand-text-color;
+}
+
+.pinButtons {
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+}
+
+.pinTitle {
+  padding-top: 1rem;
+}
+
+.pinDescription {
+  width: 80%;
+  margin-top: 1rem;
+}
+
+.hiddenForm {
+  display: none;
+}
+
+.newPin {
+  width: 100%;
+}

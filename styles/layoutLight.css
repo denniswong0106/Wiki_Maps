@@ -1,9 +1,5 @@
-$site-background: #536162;
-$brand-color: #393e46;
-$brand-text-color: #eeeeee;
-
 #site-body {
-  background-color: $site-background;
+  background-color: #f7f3e9;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,19 +23,18 @@ $brand-text-color: #eeeeee;
   height: 21rem;
   position: relative;
   border: 1px solid black;
-
-  p {
-    color: $brand-text-color;
-    background-color: $brand-color;
-    position: absolute;
-    bottom: 0px;
-    margin: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 12px;
-    opacity: 60%;
-    visibility: hidden;
-  }
+}
+.mapBox p {
+  color: #393e46;
+  background-color: #5eaaa8;
+  position: absolute;
+  bottom: 0px;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  opacity: 60%;
+  visibility: hidden;
 }
 
 .backgroundMapImg {
@@ -53,26 +48,23 @@ $brand-text-color: #eeeeee;
   top: 8px;
   left: 16px;
   font-size: 18px;
-  background-color: $brand-color;
-  color: $brand-text-color;
+  background-color: #5eaaa8;
+  color: #393e46;
   display: inline;
   padding: 0.5rem;
   opacity: 0.6;
-
 }
 
 h1 {
   padding-top: 2em;
-  color: $brand-color;
+  color: #5eaaa8;
 }
 
-.mapBox:hover {
-  p {
-    visibility: visible;
-  }
-  .backgroundMapImg {
-    -webkit-filter: blur(5px);
-  }
+.mapBox:hover p {
+  visibility: visible;
+}
+.mapBox:hover .backgroundMapImg {
+  -webkit-filter: blur(5px);
 }
 
 .favoriteIcon {
@@ -80,7 +72,7 @@ h1 {
   top: 0px;
   right: 0px;
   font-size: 18px;
-  background-color: $brand-color;
+  background-color: #5eaaa8;
   display: inline;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -111,3 +103,5 @@ h1 {
 .modeSwitcher {
   margin-left: 1rem;
 }
+
+/*# sourceMappingURL=layoutLight.css.map */
