@@ -6,13 +6,13 @@ const {getFavoritesByUserId} = require('../lib/queriesFavorites')
 
 // /GET/users/logout/:id   =>  deletes cookie session
 router.get('/logout/:id', (req, res) => {
-  req.session = null;
+  req.session.user_id = null;
   res.redirect('/');
 });
 
 //  /GET/users/:id
 router.get('/:id', (req, res) => {
-  const templateVars = {};
+  const templateVars = { light: req.session.light };
   getUserById(req.params.id)
     .then((user) => {
       templateVars.user = user;

@@ -11,7 +11,8 @@ router.get('/new', (req, res) => {
   getUserById(id)
     .then((user) => {
       const templateVars = {
-        user: user
+        user: user,
+        light: req.session.light
       };
       console.log('templateVars /maps/new/: ', templateVars);
       return res.render('maps_new', templateVars);
@@ -23,7 +24,7 @@ router.get('/new', (req, res) => {
 
 // /GET/maps/:id
 router.get('/:id', (req, res) => {
-  const templateVars = {};
+  const templateVars = { light: req.session.light };
 
   getMapById(req.params.id)
     .then((map) => {
@@ -55,7 +56,7 @@ router.get('/:id', (req, res) => {
 
 // /POST/maps/:id/edit
 router.get('/:id/edit', (req, res) => {
-  const templateVars = {};
+  const templateVars = { light: req.session.light };
 
   getMapById(req.params.id)
     .then((map) => {
@@ -80,7 +81,6 @@ router.post('/:id/edit', (req, res) => {
     title: req.body.newMapTitle,
     description: req.body.newMapDescription,
     thumbnail_img: req.body.newMapImg,
-    city: req.body.newMapCity,
     id: req.params.id
   };
 
@@ -99,8 +99,7 @@ router.post('/new', (req, res) => {
     contributor_id: req.session.user_id,
     title: req.body.newMapTitle,
     description: req.body.newMapDescription,
-    thumbnail_img: req.body.newMapImg,
-    city: req.body.newMapCity
+    thumbnail_img: req.body.newMapImg
   };
 
   addMap(mapObj)

@@ -48,7 +48,7 @@ const mapsRouter = require('./routes/maps-router');
 const usersRouter = require('./routes/users-router');
 const pinsRouter = require('./routes/pins-router');
 const favoritesRouter = require('./routes/favorites-router');
-
+const lightsRouter = require('./routes/lights-router');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -59,6 +59,7 @@ app.use("/maps", mapsRouter);
 app.use("/users", usersRouter);
 app.use("/pins", pinsRouter);
 app.use("/favorites", favoritesRouter);
+app.use("/lights", lightsRouter);
 
 // Note: mount other resources here, using the same pattern above
 
@@ -68,7 +69,7 @@ app.use("/favorites", favoritesRouter);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get('/', (req, res) => {
-  const templateVars = {};
+  const templateVars = { light: req.session.light };
 
   getMaps()
     .then((maps) => {
@@ -92,8 +93,6 @@ app.get('/', (req, res) => {
       console.log('templateVars homepage: ', templateVars);
       return res.render('index', templateVars);
     });
-
-
 
 });
 
