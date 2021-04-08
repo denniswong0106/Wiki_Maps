@@ -39,6 +39,7 @@ router.post('/:id/edit', (req, res) => {
   };
   editPin(pinObj)
     .then((result) => {
+      console.log('able to finish addpin query successfully')
       res.redirect('back');
     }).catch(err => {
       console.log('Error occured');
