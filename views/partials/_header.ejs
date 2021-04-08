@@ -12,15 +12,17 @@
       </div>
     </div>
     <h6 id="welcomeMsg">Welcome back, <%= user.name %></h6>
+    <% if(!light) { %>
+      <a href="/lights/off"><button type="button" class="btn btn-dark modeSwitcher">Dark Mode</button></a>
+    <% } else { %>
+      <a href="/lights/on"><button type="button" class="btn btn-light modeSwitcher">Light Mode</button></a>
+      <% } %>
     <a href="/users/logout/1"><button type="button" class="btn btn-danger">Log Out</button></a>
 <% } else { %>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+  </div>
       <a href="/users/login/1"><button type="button" class="btn btn-primary userAccountButtons">Log In</button></a>
       <a href="/register"><button type="button" class="btn btn-info">Register</button></a>
 <% } %>
-<% if(!light) { %>
-  <a href="/lights/off"><button type="button" class="btn btn-dark modeSwitcher">Dark Mode</button></a>
-<% } else { %>
-  <a href="/lights/on"><button type="button" class="btn btn-light modeSwitcher">Light Mode</button></a>
-  <% } %>
   </nav>
 </header>
