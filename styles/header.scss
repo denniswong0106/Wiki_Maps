@@ -2,10 +2,16 @@
 
 $brand-color: #393e46;
 $brand-text-color: #eeeeee;
+$font-brand: 'Sawarabi Mincho', sans-serif;
 
 #navbar {
   background-color: $brand-color;
   .brand-text {
+    color: $brand-text-color;
+  }
+  .brand-icon {
+    font-family: $font-brand;
+    font-weight: bold;
     color: $brand-text-color;
   }
 }

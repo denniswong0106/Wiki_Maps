@@ -44,9 +44,12 @@ router.post('/:id/edit', (req, res) => {
 
 // /POST/pins/:id/delete
 router.post('/:id/delete', (req, res) => {
-  deletePin(req.params.id, req.session.user_id)
+  const pinObj = {
+    id: req.params.id
+  }
+  deletePin(pinObj)
     .then((result) => {
-      res.redirect(`/users/${req.session.user_id}`);
+      res.redirect('back');
     }).catch(err => {
       console.log('Error occured');
       console.log(err);
