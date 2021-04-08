@@ -42,11 +42,11 @@
         </a>
         <% if (mapIdsFavorites.includes(maps[i-1].id)) { %>
           <button class="favoriteIcon favorited" type="button" name="button">
-            <i class="fas fa-star"></i>
+            <i class="fas fa-star" name="<%= maps[i-1].id %>"></i>
           </button>
           <% } else { %>
             <button class="favoriteIcon" type="button" name="button">
-              <i class="far fa-star"></i>
+              <i class="far fa-star" name="<%= maps[i-1].id %>"></i>
             </button>
           <% } %>
         <p class="mapDescription"><%= maps[i-1].description %></p>
@@ -61,11 +61,11 @@
         </a>
         <% if (mapIdsFavorites.includes(maps[i].id)) { %>
         <button class="favoriteIcon favorited" type="button" name="button">
-          <i class="fas fa-star"></i>
+          <i class="fas fa-star" name="<%= maps[i].id %>"></i>
         </button>
         <% } else { %>
           <button class="favoriteIcon" type="button" name="button">
-            <i class="far fa-star"></i>
+            <i class="far fa-star" name="<%= maps[i].id %>"></i>
           </button>
         <% } %>
         <p class="mapDescription"><%= maps[i].description %></p>
