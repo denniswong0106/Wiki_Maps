@@ -120,7 +120,7 @@ router.post('/new', (req, res) => {
 
 // /POST/maps/:id/delete
 router.post('/:id/delete', (req, res) => {
-  deleteMap(req.params.id, req.session.user_id)
+  deleteMap(req.params.id)
     .then((result) => {
       res.redirect(`/users/${req.session.user_id}`);
     }).catch(err => {
