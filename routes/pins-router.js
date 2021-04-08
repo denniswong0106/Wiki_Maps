@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const router  = express.Router();
 const { addPin, deletePin, editPin } = require('../lib/queriesPins');
@@ -5,13 +6,14 @@ const { addPin, deletePin, editPin } = require('../lib/queriesPins');
 // /POST/pins/add
 router.post('/add', (req, res) => {
 
+
   const pinObj = {
     longitude: req.body.newLng,
     latitude: req.body.newLat,
     title: req.body.newTitle,
     description: req.body.newDescription,
     pin_img: req.body.newPinImg,
-    user_id: req.body.userID,
+    user_id: req.session.user_id,
     map_id: req.body.mapId
   };
 
