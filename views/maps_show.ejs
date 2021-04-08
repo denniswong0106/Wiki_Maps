@@ -47,14 +47,17 @@
     <div id="map-container">
     </div>
   </div>
+
+  <% if (user) { %>
   <div class="buttonContainer">
     <% let editMap = `/maps/${map.id}/edit` %>
   <a href="<%= editMap %>"><button type="button" name="button" class="btn btn-primary">Edit Map</button></a>
   <% let deleteMap = `/maps/${map.id}/delete` %>
     <form method="POST" action='<%= deleteMap %>'><button type="submit" name="button" class = "btn btn-danger">Delete Map</button></form>
   </div>
+  <% } %>
 
-
+<% if (user) { %>
   <script type="text/javascript">
     const getPins = '<%- JSON.stringify(pins) %>';
     const getUser = '<%- JSON.stringify(user) %>';
@@ -62,6 +65,8 @@
     const pinsData = JSON.parse(getPins);
     const userData = JSON.parse(getUser);
     const mapData = JSON.parse(getMap);
+
+    console.log(userData);
 
     let zoomStart = 2;
     let latStart = 0.0000;
@@ -190,7 +195,74 @@
 });
 
   </script>
+<<<<<<< HEAD
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApUQ_4jIGFMmW7EGfUUTFySF32UAREl1E&callback=initMap"></script>
+=======
+
+<% } else { %>
+  <script type="text/javascript">
+    const getPins = '<%- JSON.stringify(pins) %>';
+    const getMap = '<%- JSON.stringify(map) %>';
+    const pinsData = JSON.parse(getPins);
+    const mapData = JSON.parse(getMap);
+
+    let zoomStart = 2;
+    let latStart = 0.0000;
+    let lngStart = 0.0000;
+
+    if (pinsData) {
+      zoomStart = 12;
+      latStart = Number(pinsData[0].latitude);
+      lngStart = Number(pinsData[0].longitude);
+    }
+
+    function initMap() {
+
+      const options = {
+        zoom: zoomStart,
+        center: {
+          lat: latStart,
+          lng: lngStart
+        }
+      };
+      const map = new google.maps.Map(document.getElementById('map-container'), options);
+
+      const addMarker = function(properties) {
+        const marker = new google.maps.Marker({
+          position: properties.coords,
+          map: map
+        })
+        const infoWindow = new google.maps.InfoWindow({
+          content: properties.content,
+          minWidth: 350
+        })
+        marker.addListener('click', function() {
+          infoWindow.open(map, marker);
+        })
+      }
+
+
+      for (let pin in pinsData) {
+
+          // Note: since google requires one long string for all html content, '' wrap quotes and + for all lines are necessary.
+        let contentString = '<div class="pinContent">' +
+        '<h2 class="pinTitle">' + pinsData[pin].title + '</h2>' +
+        '<img class="pinImg" src="' + pinsData[pin].pin_img + '" alt="Pin image">' +
+        '<p class="pinDescription">' + pinsData[pin].description +'</p>' +
+        '</div>'
+        addMarker({
+          coords: {
+            lat: Number(pinsData[pin].latitude),
+            lng: Number(pinsData[pin].longitude)
+          },
+          content: contentString
+        })
+      }
+    };
+  </script>
+<% } %>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ4giylj9RqjZsVyjdOT7gUfk-WINx0yc&callback=initMap"></script>
+>>>>>>> 9f33ab9221c17351fbf7a5e3feb966e2e080b3dc
 </body>
 
 </html>
