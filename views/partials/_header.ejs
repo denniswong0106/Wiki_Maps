@@ -17,5 +17,10 @@
       <a href="/users/login/1"><button type="button" class="btn btn-primary userAccountButtons">Log In</button></a>
       <a href="/register"><button type="button" class="btn btn-info">Register</button></a>
 <% } %>
+<% if(!light) { %>
+  <a href="/lights/off"><button type="button" class="btn btn-dark modeSwitcher">Dark Mode</button></a>
+<% } else { %>
+  <a href="/lights/on"><button type="button" class="btn btn-light modeSwitcher">Light Mode</button></a>
+  <% } %>
   </nav>
 </header>

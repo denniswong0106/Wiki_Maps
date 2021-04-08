@@ -3,6 +3,7 @@ const router  = express.Router();
 const { getMapById, deleteMap, editMapById, addMap } = require('../lib/queriesMaps');
 const { getUserById, getUserFavorite } = require('../lib/queriesUsers');
 const { getAllPinsForMapId } = require('../lib/queriesPins');
+const { getFavoritesByUserId } = require('../lib/queriesFavorites')
 
 // /GET/maps/new   =>   page to create a new map
 router.get('/new', (req, res) => {
@@ -44,6 +45,11 @@ router.get('/:id', (req, res) => {
     })
     .then((pins) => {
       templateVars.pins = pins;
+
+      return getFavoritesByUserId(req.session.user_id);
+    })
+    .then((mapIdsFavorites) => {
+      templateVars.mapIdsFavorites = mapIdsFavorites;
 
       console.log('templateVars maps/:id/: ', templateVars);
       return res.render('maps_show', templateVars);

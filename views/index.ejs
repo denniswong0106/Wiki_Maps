@@ -10,9 +10,15 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <% if (!light) { %>
+    <link rel="stylesheet" href="/styles/layoutLight.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/headerLight.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/mainPageLight.css" type="text/css" />
+    <% } else { %>
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/mainPage.css" type="text/css" />
+    <% } %>
 
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -36,11 +42,11 @@
         </a>
         <% if (mapIdsFavorites.includes(maps[i-1].id)) { %>
           <button class="favoriteIcon favorited" type="button" name="button">
-            <i class="fas fa-star"></i>
+            <i class="fas fa-star" name="<%= maps[i-1].id %>"></i>
           </button>
           <% } else { %>
             <button class="favoriteIcon" type="button" name="button">
-              <i class="far fa-star"></i>
+              <i class="far fa-star" name="<%= maps[i-1].id %>"></i>
             </button>
           <% } %>
         <p class="mapDescription"><%= maps[i-1].description %></p>
@@ -55,11 +61,11 @@
         </a>
         <% if (mapIdsFavorites.includes(maps[i].id)) { %>
         <button class="favoriteIcon favorited" type="button" name="button">
-          <i class="fas fa-star"></i>
+          <i class="fas fa-star" name="<%= maps[i].id %>"></i>
         </button>
         <% } else { %>
           <button class="favoriteIcon" type="button" name="button">
-            <i class="far fa-star"></i>
+            <i class="far fa-star" name="<%= maps[i].id %>"></i>
           </button>
         <% } %>
         <p class="mapDescription"><%= maps[i].description %></p>
