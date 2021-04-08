@@ -47,12 +47,15 @@
     <div id="map-container">
     </div>
   </div>
+
+  <% if (user) { %>
   <div class="buttonContainer">
     <% let editMap = `/maps/${map.id}/edit` %>
   <a href="<%= editMap %>"><button type="button" name="button" class="btn btn-primary">Edit Map</button></a>
   <% let deleteMap = `/maps/${map.id}/delete` %>
     <form method="POST" action='<%= deleteMap %>'><button type="submit" name="button" class = "btn btn-danger">Delete Map</button></form>
   </div>
+  <% } %>
 
 <% if (user) { %>
   <script type="text/javascript">
