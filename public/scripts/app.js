@@ -14,7 +14,7 @@ $(document).ready(function() {
 // toggles favorite icon when clicked;
   $('.favoriteIcon').click(function() {
 
-    let map_id = $(this).siblings().attr('href').substr(6); // reads the href for the map and stores the :id of ref as map_id
+    let map_id = $(this).children().attr('name');
     console.log('map_id:', map_id);
 
     if ($(this).hasClass('favorited')) {
