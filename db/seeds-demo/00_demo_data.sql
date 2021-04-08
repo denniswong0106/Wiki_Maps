@@ -1,7 +1,7 @@
 -- HERE I ADD 'real' data that we can use for demo. Run this prior to seeding with fake data.
 
 INSERT INTO users(name, email, city, profile_pic) VALUES
-('Ryan Reynolds', 'ryan@reynolds.com', 'Vancouver', 'https://github.com/DavidRadvan/Wiki_Maps/blob/routes/public/images/ryan-rey.png?raw=true'),
+('Ryan Reynolds', 'ryan@reynolds.com', 'Vancouver', 'https://github.com/DavidRadvan/Wiki_Maps/blob/master/public/images/ryan-rey.png?raw=true'),
 ('The Other Ryan', 'gooslings@ryan.com', 'Calgary', 'https://github.com/DavidRadvan/Wiki_Maps/blob/routes/public/images/mr-don.png?raw=true')
 -- ('Regular Joe', 'joeBiden@gmail.com', 'Washington', '../../public/images.profile-hex.png')
 ;
