@@ -32,11 +32,11 @@
 <body id="site-body">
   <%- include('partials/_header') %>
   <header id="profileHeader">
-    <% let profileImg = `${user.profile_pic}` %>
+    <% let profileImg = `${userProfile.profile_pic}` %>
     <img src="<%= profileImg %>" alt="Profile Picture">
     <div id="profileInfo">
-      <h1><%= user.name %></h1>
-      <h5><%= user.city %></h5>
+      <h1><%= userProfile.name %></h1>
+      <h5><%= userProfile.city %></h5>
     </div>
   </header>
   <div id="profileToggleDiv">
