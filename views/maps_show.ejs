@@ -69,13 +69,12 @@
     const userData = JSON.parse(getUser);
     const mapData = JSON.parse(getMap);
 
-    console.log(userData);
 
     let zoomStart = 2;
     let latStart = 0.0000;
     let lngStart = 0.0000;
 
-    if (pinsData) {
+    if (pinsData.length) {
       zoomStart = 12;
       latStart = Number(pinsData[0].latitude);
       lngStart = Number(pinsData[0].longitude);
