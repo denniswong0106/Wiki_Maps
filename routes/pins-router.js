@@ -4,13 +4,21 @@ const { addPin, deletePin, editPin } = require('../lib/queriesPins');
 
 // /POST/pins/add
 router.post('/add', (req, res) => {
+
+  console.log('ADD PIN INFO SENT TO PIN ROUTER:', req.body);
+
   const pinObj = {
     longitude: req.body.newLng,
     latitude: req.body.newLat,
     title: req.body.newTitle,
     description: req.body.newDescription,
     pin_img: req.body.newPinImg,
+    user_id: req.body.userID,
+    map_id: req.body.mapId
   };
+
+  console.log(pinObj);
+
   addPin(pinObj)
     .then((result) => {
       res.redirect(`/users/${req.session.user_id}`);
