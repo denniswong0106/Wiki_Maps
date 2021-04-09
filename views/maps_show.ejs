@@ -211,7 +211,7 @@
     let latStart = 0.0000;
     let lngStart = 0.0000;
 
-    if (pinsData) {
+    if (pinsData.length) {
       zoomStart = 12;
       latStart = Number(pinsData[pinsData.length - 1].latitude);
       lngStart = Number(pinsData[pinsData.length - 1].longitude);
